@@ -1,6 +1,7 @@
 package com.frs.supercad.modelviewer;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 
 import java.beans.PropertyChangeListener;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 public class ModelInfo implements Serializable {
 	Vector3 scale;
 	Vector3 translation;
+	Quaternion rotation;
 	PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
 	public ModelInfo(){
@@ -18,8 +20,10 @@ public class ModelInfo implements Serializable {
 	public ModelInfo(ModelInstance instance){
 		scale = new Vector3();
 		translation = new Vector3();
+		rotation = new Quaternion();
 		instance.transform.getTranslation(translation);
 		instance.transform.getScale(scale);
+		instance.transform.getRotation(rotation);
 	}
 
 	public void addPropertyChangeListener(PropertyChangeListener listner){
@@ -45,5 +49,14 @@ public class ModelInfo implements Serializable {
 	public void setTranslation(Vector3 translation) {
 		propertyChangeSupport.firePropertyChange("translation",this.translation,translation);
 		this.translation = translation;
+	}
+
+	public Quaternion getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(Quaternion rotation) {
+		propertyChangeSupport.firePropertyChange("rotation",this.rotation,rotation);
+		this.rotation = rotation;
 	}
 }

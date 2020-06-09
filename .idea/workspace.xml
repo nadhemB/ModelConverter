@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b88f85cc-8140-4c85-9b77-194d6a7a4ee6" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelAdjustment.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/frs/supercad/modelviewer/ModelInfo.class" afterPath="$PROJECT_DIR$/core/out/production/classes/com/frs/supercad/modelviewer/ModelInfo.class" />
+      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/frs/supercad/modelviewer/ViewerController.class" afterPath="$PROJECT_DIR$/core/out/production/classes/com/frs/supercad/modelviewer/ViewerController.class" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java" />
       <change beforePath="$PROJECT_DIR$/desktop/out/production/classes/com/frs/supercad/desktop/MainFrame$1$1.class" afterPath="$PROJECT_DIR$/desktop/out/production/classes/com/frs/supercad/desktop/MainFrame$1$1.class" />
       <change beforePath="$PROJECT_DIR$/desktop/out/production/classes/com/frs/supercad/desktop/MainFrame$1.class" afterPath="$PROJECT_DIR$/desktop/out/production/classes/com/frs/supercad/desktop/MainFrame$1.class" />
       <change beforePath="$PROJECT_DIR$/desktop/out/production/classes/com/frs/supercad/desktop/MainFrame$2.class" afterPath="$PROJECT_DIR$/desktop/out/production/classes/com/frs/supercad/desktop/MainFrame$2.class" />
@@ -44,8 +47,8 @@
       <file leaf-file-name="ModelAdjustment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelAdjustment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+            <state relative-caret-position="170">
+              <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,13 +56,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Quaternion.java" pinned="false" current-in-tab="true">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.10/37e7ec91522313dabc753c72196dd665ea4a9332/gdx-1.9.10-sources.jar!/com/badlogic/gdx/math/Quaternion.java">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-374">
-              <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+            <state relative-caret-position="291">
+              <caret line="82" column="52" lean-forward="false" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1591722355353" expanded="false" signature="5315:13834" ph="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+                <marker date="1591722355353" expanded="true" signature="13840:14956" ph="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="74" column="66" lean-forward="false" selection-start-line="74" selection-start-column="66" selection-end-line="74" selection-end-column="66" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+              <folding>
+                <element signature="e#1386#1387#0" expanded="true" />
+                <element signature="e#1408#1409#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainFrame.jfd" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd">
+          <provider selected="true" editor-type-id="JFormDesigner">
+            <state propertiesWidth="322" />
           </provider>
         </entry>
       </file>
@@ -810,12 +847,12 @@
         <option value="$PROJECT_DIR$/core/src/com/frs/supercad/utilities/DrawingHelper.java" />
         <option value="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/CameraController.java" />
         <option value="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/DesktopLauncher.java" />
-        <option value="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java" />
         <option value="$PROJECT_DIR$/core/src/com/frs/supercad/ModelConverter.java" />
-        <option value="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java" />
-        <option value="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd" />
-        <option value="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java" />
         <option value="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelAdjustment.java" />
+        <option value="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd" />
+        <option value="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java" />
+        <option value="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java" />
+        <option value="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java" />
       </list>
     </option>
   </component>
@@ -1184,12 +1221,20 @@
       <workItem from="1591357318569" duration="9531000" />
       <workItem from="1591371449178" duration="2142000" />
       <workItem from="1591693184035" duration="1142000" />
-      <workItem from="1591694934425" duration="17669000" />
+      <workItem from="1591694934425" duration="20235000" />
     </task>
+    <task id="LOCAL-00001" summary="adjusting model translation and scale">
+      <created>1591719371478</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591719371478</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54741000" />
+    <option name="totallyTimeSpent" value="57307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -1203,12 +1248,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1764706" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24642289" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21911764" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="JFormDesigner Bindings" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06836248" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1264,9 +1310,13 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adjusting model translation and scale" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjusting model translation and scale" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="48" />
+      <option name="time" value="49" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1577,20 +1627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#819#820#0" expanded="false" />
-            <element signature="e#838#839#0" expanded="false" />
-            <element signature="e#1010#1011#0" expanded="false" />
-            <element signature="e#1035#1036#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-lwjgl/1.9.10/bc819db135041daf18548095a4224fdf91128d4c/gdx-backend-lwjgl-1.9.10-sources.jar!/com/badlogic/gdx/backends/lwjgl/LwjglCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1615,40 +1651,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding>
-            <element signature="method#initComponents#0;class#MainFrame#0" expanded="false" />
-            <marker date="1591719209254" expanded="true" signature="10640:11495" ph="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd">
-      <provider selected="true" editor-type-id="JFormDesigner">
-        <state paletteWidth="0" propertiesWidth="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/assets/ModelAsset.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="17" column="39" lean-forward="false" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#331#332#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#291#292#0" expanded="false" />
+            <element signature="e#331#332#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1658,17 +1668,7 @@
         <state relative-caret-position="249">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#611#612#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelAdjustment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#611#612#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1678,6 +1678,52 @@
         <state relative-caret-position="-374">
           <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelAdjustment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="74" column="66" lean-forward="false" selection-start-line="74" selection-start-column="66" selection-end-line="74" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="25" column="49" lean-forward="false" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
+          <folding>
+            <element signature="e#1386#1387#0" expanded="true" />
+            <element signature="e#1408#1409#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd">
+      <provider selected="true" editor-type-id="JFormDesigner">
+        <state propertiesWidth="322" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="82" column="52" lean-forward="false" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1591722355353" expanded="false" signature="5315:13834" ph="// JFormDesigner - Component initialization - DO NOT MODIFY" />
+            <marker date="1591722355353" expanded="true" signature="13840:14956" ph="// JFormDesigner - Variables declaration - DO NOT MODIFY" />
+          </folding>
         </state>
       </provider>
     </entry>

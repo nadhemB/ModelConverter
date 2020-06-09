@@ -72,6 +72,7 @@ public class ViewerController {
 		ModelInfo newInfo = new ModelInfo(instance);
 		ModelConverter.modelInfo.setScale(newInfo.getScale());
 		ModelConverter.modelInfo.setTranslation(newInfo.getTranslation());
+		ModelConverter.modelInfo.setRotation(newInfo.getRotation());
 	}
 
 

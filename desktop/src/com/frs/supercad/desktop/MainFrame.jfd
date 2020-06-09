@@ -25,6 +25,9 @@ new FormModel {
 				"background": sfield java.awt.SystemColor windowText
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					"background": sfield java.awt.SystemColor desktop
+					"opaque": true
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
 						"columns": 2
 						"rows": 6
@@ -33,6 +36,8 @@ new FormModel {
 					} ) {
 						name: "panel1"
 						"background": sfield java.awt.SystemColor windowText
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						"foreground": sfield java.awt.SystemColor text
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label9"
 							"text": "scale"
@@ -55,7 +60,6 @@ new FormModel {
 								name: "tfScaleX"
 								"foreground": sfield java.awt.Color white
 								"background": sfield java.awt.SystemColor desktop
-								addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "tfScaleXActionPerformed", true ) )
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label3"
@@ -126,8 +130,67 @@ new FormModel {
 								"foreground": sfield java.awt.Color white
 							} )
 						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label10"
+							"text": "rotation"
+							"foreground": sfield java.awt.SystemColor text
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+							"columns": 8
+							"rows": 0
+							"hgap": 5
+						} ) {
+							name: "panel5"
+							"background": sfield java.awt.SystemColor desktop
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label11"
+								"text": "X:"
+								"horizontalAlignment": 0
+								"foreground": sfield java.awt.SystemColor text
+							} )
+							add( new FormComponent( "javax.swing.JTextField" ) {
+								name: "tfRotX"
+								"foreground": sfield java.awt.Color white
+								"background": sfield java.awt.SystemColor desktop
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label12"
+								"text": "Y:"
+								"horizontalAlignment": 0
+								"foreground": sfield java.awt.Color white
+							} )
+							add( new FormComponent( "javax.swing.JTextField" ) {
+								name: "tfRotY"
+								"background": sfield java.awt.SystemColor desktop
+								"foreground": sfield java.awt.Color white
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label13"
+								"text": "Z:"
+								"horizontalAlignment": 0
+								"foreground": sfield java.awt.Color white
+							} )
+							add( new FormComponent( "javax.swing.JTextField" ) {
+								name: "tfRotZ"
+								"background": sfield java.awt.Color black
+								"foreground": sfield java.awt.Color white
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label14"
+								"text": "W:"
+								"horizontalAlignment": 0
+								"foreground": sfield java.awt.SystemColor text
+							} )
+							add( new FormComponent( "javax.swing.JTextField" ) {
+								name: "tfRotW"
+								"foreground": sfield java.awt.Color white
+								"background": sfield java.awt.SystemColor desktop
+							} )
+						} )
 					}, new FormLayoutConstraints( null ) {
-						"title": "text"
+						"title": "General"
+						"background": sfield java.awt.Color black
+						"foreground": sfield java.awt.SystemColor text
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "North"

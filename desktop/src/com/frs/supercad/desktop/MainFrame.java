@@ -9,6 +9,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.frs.supercad.ModelConverter;
 import com.frs.supercad.assets.ModelAsset;
@@ -78,6 +79,13 @@ public class MainFrame extends JFrame {
 		this.tfScaleY.getDocument().addDocumentListener(new CustomDocumentListener());
 		this.tfScaleZ.getDocument().addDocumentListener(new CustomDocumentListener());
 
+		this.tfRotX.getDocument().addDocumentListener(new CustomDocumentListener());
+		this.tfRotY.getDocument().addDocumentListener(new CustomDocumentListener());
+		this.tfRotZ.getDocument().addDocumentListener(new CustomDocumentListener());
+		this.tfRotW.getDocument().addDocumentListener(new CustomDocumentListener());
+
+
+
 
 	}
 
@@ -97,6 +105,12 @@ public class MainFrame extends JFrame {
 		this.tfTranslX.setText(info.getTranslation().x + "");
 		this.tfTranslY.setText(info.getTranslation().y + "");
 		this.tfTranslZ.setText(info.getTranslation().z + "");
+
+		this.tfRotX.setText(info.getRotation().x + "");
+		this.tfRotY.setText(info.getRotation().y + "");
+		this.tfRotZ.setText(info.getRotation().z + "");
+		this.tfRotW.setText(info.getRotation().w + "");
+
 
 	}
 
@@ -126,26 +140,37 @@ public class MainFrame extends JFrame {
 
 	public void updateModelInstance(){
 	Vector3 scale = new Vector3();
-		Vector3 translation = new Vector3();
-		try{
-			scale.x = Float.parseFloat(this.tfScaleX.getText());
-			scale.y = Float.parseFloat(this.tfScaleY.getText());
-			scale.z = Float.parseFloat(this.tfScaleZ.getText());
+	Vector3 translation = new Vector3();
+	Quaternion rotation = new Quaternion();
+	try{
+		scale.x = Float.parseFloat(this.tfScaleX.getText());
+		scale.y = Float.parseFloat(this.tfScaleY.getText());
+		scale.z = Float.parseFloat(this.tfScaleZ.getText());
 
-			translation.x = Float.parseFloat(this.tfTranslX.getText());
-			translation.y = Float.parseFloat(this.tfTranslY.getText());
-			translation.z = Float.parseFloat(this.tfTranslZ.getText());
+		translation.x = Float.parseFloat(this.tfTranslX.getText());
+		translation.y = Float.parseFloat(this.tfTranslY.getText());
+		translation.z = Float.parseFloat(this.tfTranslZ.getText());
 
-		}catch(Exception e){
-			scale = new Vector3();
-			translation = new Vector3();
-		}
+		rotation.x = Float.parseFloat(this.tfRotX.getText());
+		rotation.y = Float.parseFloat(this.tfRotY.getText());
+		rotation.z = Float.parseFloat(this.tfRotZ.getText());
+		rotation.w = Float.parseFloat(this.tfRotW.getText());
+
+
+	}catch(Exception e){
+		scale = new Vector3();
+		translation = new Vector3();
+		rotation = new Quaternion();
+	}
 
 
 		ViewerController.instance.transform.setToScaling(scale);
 		ViewerController.instance.calculateTransforms();
 		ViewerController.instance.transform.translate(translation);
+		ViewerController.instance.transform.rotate(rotation);
 	}
+
+
 
 
 
@@ -177,6 +202,16 @@ public class MainFrame extends JFrame {
 		tfTranslY = new JTextField();
 		label8 = new JLabel();
 		tfTranslZ = new JTextField();
+		label10 = new JLabel();
+		panel5 = new JPanel();
+		label11 = new JLabel();
+		tfRotX = new JTextField();
+		label12 = new JLabel();
+		tfRotY = new JTextField();
+		label13 = new JLabel();
+		tfRotZ = new JTextField();
+		label14 = new JLabel();
+		tfRotW = new JTextField();
 
 		//======== this ========
 		setMinimumSize(new Dimension(720, 720));
@@ -204,11 +239,13 @@ public class MainFrame extends JFrame {
 			southernPanel.setBackground(new Color(51, 51, 51));
 			southernPanel.setMinimumSize(new Dimension(720, 30));
 			southernPanel.setPreferredSize(new Dimension(720, 50));
-			southernPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-			0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-			.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.
-			red),southernPanel. getBorder()));southernPanel. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-			beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
+			southernPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
+			swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
+			. TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
+			, java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,southernPanel. getBorder
+			() ) ); southernPanel. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
+			. beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
+			( ) ;} } );
 			southernPanel.setLayout(null);
 
 			{
@@ -242,10 +279,15 @@ public class MainFrame extends JFrame {
 
 			//======== tabbedPane1 ========
 			{
+				tabbedPane1.setBorder(null);
+				tabbedPane1.setBackground(SystemColor.desktop);
+				tabbedPane1.setOpaque(true);
 
 				//======== panel1 ========
 				{
 					panel1.setBackground(SystemColor.windowText);
+					panel1.setBorder(null);
+					panel1.setForeground(SystemColor.text);
 					panel1.setLayout(new GridLayout(6, 2, 2, 2));
 
 					//---- label9 ----
@@ -337,8 +379,66 @@ public class MainFrame extends JFrame {
 						panel4.add(tfTranslZ);
 					}
 					panel1.add(panel4);
+
+					//---- label10 ----
+					label10.setText("rotation");
+					label10.setForeground(SystemColor.text);
+					panel1.add(label10);
+
+					//======== panel5 ========
+					{
+						panel5.setBackground(SystemColor.desktop);
+						panel5.setLayout(new GridLayout(0, 8, 5, 0));
+
+						//---- label11 ----
+						label11.setText("X:");
+						label11.setHorizontalAlignment(SwingConstants.CENTER);
+						label11.setForeground(SystemColor.text);
+						panel5.add(label11);
+
+						//---- tfRotX ----
+						tfRotX.setForeground(Color.white);
+						tfRotX.setBackground(SystemColor.desktop);
+						panel5.add(tfRotX);
+
+						//---- label12 ----
+						label12.setText("Y:");
+						label12.setHorizontalAlignment(SwingConstants.CENTER);
+						label12.setForeground(Color.white);
+						panel5.add(label12);
+
+						//---- tfRotY ----
+						tfRotY.setBackground(SystemColor.desktop);
+						tfRotY.setForeground(Color.white);
+						panel5.add(tfRotY);
+
+						//---- label13 ----
+						label13.setText("Z:");
+						label13.setHorizontalAlignment(SwingConstants.CENTER);
+						label13.setForeground(Color.white);
+						panel5.add(label13);
+
+						//---- tfRotZ ----
+						tfRotZ.setBackground(Color.black);
+						tfRotZ.setForeground(Color.white);
+						panel5.add(tfRotZ);
+
+						//---- label14 ----
+						label14.setText("W:");
+						label14.setHorizontalAlignment(SwingConstants.CENTER);
+						label14.setForeground(SystemColor.text);
+						panel5.add(label14);
+
+						//---- tfRotW ----
+						tfRotW.setForeground(Color.white);
+						tfRotW.setBackground(SystemColor.desktop);
+						panel5.add(tfRotW);
+					}
+					panel1.add(panel5);
 				}
-				tabbedPane1.addTab("text", panel1);
+				tabbedPane1.addTab("General", panel1);
+				tabbedPane1.setBackgroundAt(0, Color.black);
+				tabbedPane1.setForegroundAt(0, SystemColor.text);
 			}
 			controlPanel.add(tabbedPane1, BorderLayout.NORTH);
 		}
@@ -374,6 +474,16 @@ public class MainFrame extends JFrame {
 	private JTextField tfTranslY;
 	private JLabel label8;
 	private JTextField tfTranslZ;
+	private JLabel label10;
+	private JPanel panel5;
+	private JLabel label11;
+	private JTextField tfRotX;
+	private JLabel label12;
+	private JTextField tfRotY;
+	private JLabel label13;
+	private JTextField tfRotZ;
+	private JLabel label14;
+	private JTextField tfRotW;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	class CustomDocumentListener implements DocumentListener{
