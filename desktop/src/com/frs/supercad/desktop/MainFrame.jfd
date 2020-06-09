@@ -1,0 +1,165 @@
+JFDML JFormDesigner: "7.0.2.0.298" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 720, 720 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "southernPanel"
+				"background": new java.awt.Color( 51, 51, 51, 255 )
+				"minimumSize": new java.awt.Dimension( 720, 30 )
+				"preferredSize": new java.awt.Dimension( 720, 50 )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "South"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "canvasP"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "controlPanel"
+				"preferredSize": new java.awt.Dimension( 250, 720 )
+				"background": sfield java.awt.SystemColor windowText
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+					"columns": 2
+					"rows": 6
+					"hgap": 2
+					"vgap": 2
+				} ) {
+					name: "panel1"
+					"background": sfield java.awt.SystemColor windowText
+					add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+						name: "tabbedPane1"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+							"columns": 2
+							"rows": 0
+							"hgap": 10
+							"vgap": 2
+						} ) {
+							name: "panel2"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label1"
+								"text": "scale"
+							} )
+						}, new FormLayoutConstraints( null ) {
+							"title": "text"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+						"columns": 6
+						"rows": 0
+						"hgap": 5
+					} ) {
+						name: "panel3"
+						"background": sfield java.awt.SystemColor desktop
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label2"
+							"text": "X:"
+							"horizontalAlignment": 0
+							"foreground": sfield java.awt.SystemColor text
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "tfScaleX"
+							"foreground": sfield java.awt.Color white
+							"background": sfield java.awt.SystemColor desktop
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label3"
+							"text": "Y:"
+							"horizontalAlignment": 0
+							"foreground": sfield java.awt.Color white
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "tfScaleY"
+							"background": sfield java.awt.SystemColor desktop
+							"foreground": sfield java.awt.Color white
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label4"
+							"text": "Z:"
+							"horizontalAlignment": 0
+							"foreground": sfield java.awt.Color white
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "tfScaleZ"
+							"background": sfield java.awt.Color black
+							"foreground": sfield java.awt.Color white
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "translation"
+						"foreground": sfield java.awt.SystemColor text
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+						"columns": 6
+						"rows": 0
+						"hgap": 5
+					} ) {
+						name: "panel4"
+						"background": sfield java.awt.SystemColor desktop
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label6"
+							"text": "X:"
+							"horizontalAlignment": 0
+							"foreground": sfield java.awt.SystemColor text
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "tfTranslX"
+							"foreground": sfield java.awt.Color white
+							"background": sfield java.awt.SystemColor desktop
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label7"
+							"text": "Y:"
+							"horizontalAlignment": 0
+							"foreground": sfield java.awt.Color white
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "tfTranslY"
+							"background": sfield java.awt.SystemColor desktop
+							"foreground": sfield java.awt.Color white
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label8"
+							"text": "Z:"
+							"horizontalAlignment": 0
+							"foreground": sfield java.awt.Color white
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "tfTranslZ"
+							"background": sfield java.awt.Color black
+							"foreground": sfield java.awt.Color white
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label9"
+						"text": "scale"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "East"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "File"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuOpen"
+						"text": "Open"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuOpenActionPerformed", true ) )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 25 )
+			"size": new java.awt.Dimension( 720, 410 )
+		} )
+	}
+}
