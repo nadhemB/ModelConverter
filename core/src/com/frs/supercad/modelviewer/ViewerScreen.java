@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.frs.supercad.ModelConverter;
 
 import static com.badlogic.gdx.graphics.GL20.*;
 
@@ -28,8 +29,8 @@ public class ViewerScreen implements Screen {
 
 		controller.batch.begin(controller.camera);
 		controller.batch.render(controller.grid);
-		if(controller.instance != null)
-			controller.batch.render(controller.instance);
+		if(ModelConverter.adjustedModel.getInstance() != null)
+			controller.batch.render(ModelConverter.adjustedModel.getInstance());
 		controller.batch.end();
 	}
 

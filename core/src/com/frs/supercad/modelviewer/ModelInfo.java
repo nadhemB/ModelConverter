@@ -3,24 +3,29 @@ package com.frs.supercad.modelviewer;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
+@XStreamAlias("Model info")
 public class ModelInfo implements Serializable {
-	Vector3 scale;
-	Vector3 translation;
-	Quaternion rotation;
+
+	String modelName = "";
+	Vector3 scale = new Vector3();
+	Vector3 translation = new Vector3();
+	Quaternion rotation = new Quaternion();
+
+	@XStreamOmitField
 	PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
 	public ModelInfo(){
 
 	}
 	public ModelInfo(ModelInstance instance){
-		scale = new Vector3();
-		translation = new Vector3();
-		rotation = new Quaternion();
+
 		instance.transform.getTranslation(translation);
 		instance.transform.getScale(scale);
 		instance.transform.getRotation(rotation);
@@ -32,6 +37,16 @@ public class ModelInfo implements Serializable {
 
 
 	//getters and setters
+
+
+	public String getModelName() {
+		return modelName;
+	}
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+
 	public Vector3 getScale() {
 		return scale;
 	}

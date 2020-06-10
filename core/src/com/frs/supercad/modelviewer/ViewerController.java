@@ -19,7 +19,7 @@ public class ViewerController {
 	ModelBatch batch;
 	ModelBuilder modelBuilder;
 	ModelInstance grid;
-	public static ModelInstance instance;
+
 
 
 
@@ -46,15 +46,6 @@ public class ViewerController {
 	}
 
 	public void createBackground(){
-		/*Pixmap pixy = DrawingHelper.createGridTexture(720,720,100,100,10);
-
-		Material material  = new Material(TextureAttribute.createDiffuse(new Texture(pixy)));
-		long attrs = VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates ;
-		Model gridModel = modelBuilder.createRect(-10,0,-10,
-													10,0,-10,
-													10,0,10,
-													-10,0,10,
-													0,1,0,material,attrs);*/
 		Material material  = new Material(ColorAttribute.createDiffuse(Color.DARK_GRAY));
 		long attrs = VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal;
 		Model gridModel = modelBuilder.createLineGrid(100,100,10,10,material,attrs);
@@ -62,17 +53,17 @@ public class ViewerController {
 	}
 
 
-	public static void createModelInstance(Model model){
-			instance = new ModelInstance(model);
-			updateModelProperty();
-
+	public static void createModelInstance(String path, Model model){
+		ModelConverter.adjustedModel.setModelPath(path);
+		ModelConverter.adjustedModel.setInstance(new ModelInstance(model));
 	}
 
-	public static void updateModelProperty(){
-		ModelInfo newInfo = new ModelInfo(instance);
-		ModelConverter.modelInfo.setScale(newInfo.getScale());
-		ModelConverter.modelInfo.setTranslation(newInfo.getTranslation());
-		ModelConverter.modelInfo.setRotation(newInfo.getRotation());
+	public  void updateModelProperty(){
+		if(ModelConverter.adjustedModel.getInstance() != null){
+
+			ModelConverter.adjustedModel.applyTransforms();
+		}
+
 	}
 
 

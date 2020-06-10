@@ -32,17 +32,12 @@ public class MainFrame extends JFrame {
 
 	Game app = new ModelConverter();
 	LwjglCanvas canvas;
-	public ModelInfo info = ModelConverter.modelInfo;
-
-
-
-
-
+	public ModelInfo info = ModelConverter.adjustedModel.getInfo();
 
 	public MainFrame(LwjglApplicationConfiguration config) {
 		canvas = new LwjglCanvas(app, config);
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -54,6 +49,7 @@ public class MainFrame extends JFrame {
 		}
 		initComponents();
 		addCanvas();
+		pack();
 		this.info.addPropertyChangeListener(new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
@@ -98,18 +94,21 @@ public class MainFrame extends JFrame {
 	}
 
 	public  void displayModelInfo(){
-		this.tfScaleX.setText(info.getScale().x + "");
-		this.tfScaleY.setText(info.getScale().y + "");
-		this.tfScaleZ.setText(info.getScale().z + "");
+		if(this.info != null){
+			this.tfScaleX.setText(info.getScale().x + "");
+			this.tfScaleY.setText(info.getScale().y + "");
+			this.tfScaleZ.setText(info.getScale().z + "");
 
-		this.tfTranslX.setText(info.getTranslation().x + "");
-		this.tfTranslY.setText(info.getTranslation().y + "");
-		this.tfTranslZ.setText(info.getTranslation().z + "");
+			this.tfTranslX.setText(info.getTranslation().x + "");
+			this.tfTranslY.setText(info.getTranslation().y + "");
+			this.tfTranslZ.setText(info.getTranslation().z + "");
 
-		this.tfRotX.setText(info.getRotation().x + "");
-		this.tfRotY.setText(info.getRotation().y + "");
-		this.tfRotZ.setText(info.getRotation().z + "");
-		this.tfRotW.setText(info.getRotation().w + "");
+			this.tfRotX.setText(info.getRotation().x + "");
+			this.tfRotY.setText(info.getRotation().y + "");
+			this.tfRotZ.setText(info.getRotation().z + "");
+			this.tfRotW.setText(info.getRotation().w + "");
+		}
+
 
 
 	}
@@ -131,7 +130,15 @@ public class MainFrame extends JFrame {
 					e1.printStackTrace();
 				}
 				Model model = ModelAsset.instance.load("core/assets/models/" + selectedFile.getName());
-				ViewerController.createModelInstance(model);
+				ViewerController.createModelInstance("core/assets/models/" + selectedFile.getName(),model);
+
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						miExport.setEnabled(true);
+						repaint();
+					}
+				});
 
 			}
 
@@ -163,11 +170,27 @@ public class MainFrame extends JFrame {
 		rotation = new Quaternion();
 	}
 
+		ModelConverter.adjustedModel.getInfo().setRotation(rotation);
+		ModelConverter.adjustedModel.getInfo().setTranslation(translation);
+		ModelConverter.adjustedModel.getInfo().setScale(scale);
+		ModelConverter.adjustedModel.applyTransforms();
 
-		ViewerController.instance.transform.setToScaling(scale);
-		ViewerController.instance.calculateTransforms();
-		ViewerController.instance.transform.translate(translation);
-		ViewerController.instance.transform.rotate(rotation);
+	}
+
+	private void miExportActionPerformed(ActionEvent e) {
+
+		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		int returnValue = jfc.showOpenDialog(null);
+
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = jfc.getSelectedFile();
+			ModelConverter.adjustedModel.export(selectedFile.getAbsolutePath());
+
+		}
+
 	}
 
 
@@ -181,6 +204,9 @@ public class MainFrame extends JFrame {
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
 		menuOpen = new JMenuItem();
+		miExport = new JMenuItem();
+		menuItem3 = new JMenuItem();
+		menuItem1 = new JMenuItem();
 		southernPanel = new JPanel();
 		canvasP = new JPanel();
 		controlPanel = new JPanel();
@@ -220,6 +246,7 @@ public class MainFrame extends JFrame {
 
 		//======== menuBar1 ========
 		{
+			menuBar1.setMaximumSize(new Dimension(200, 200));
 
 			//======== menu1 ========
 			{
@@ -229,8 +256,22 @@ public class MainFrame extends JFrame {
 				menuOpen.setText("Open");
 				menuOpen.addActionListener(e -> menuOpenActionPerformed(e));
 				menu1.add(menuOpen);
+
+				//---- miExport ----
+				miExport.setText("Export");
+				miExport.setEnabled(false);
+				miExport.addActionListener(e -> miExportActionPerformed(e));
+				menu1.add(miExport);
+
+				//---- menuItem3 ----
+				menuItem3.setText("Exit");
+				menu1.add(menuItem3);
 			}
 			menuBar1.add(menu1);
+
+			//---- menuItem1 ----
+			menuItem1.setText("Edit");
+			menuBar1.add(menuItem1);
 		}
 		setJMenuBar(menuBar1);
 
@@ -239,13 +280,12 @@ public class MainFrame extends JFrame {
 			southernPanel.setBackground(new Color(51, 51, 51));
 			southernPanel.setMinimumSize(new Dimension(720, 30));
 			southernPanel.setPreferredSize(new Dimension(720, 50));
-			southernPanel.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax .
-			swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border
-			. TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog"
-			, java .awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,southernPanel. getBorder
-			() ) ); southernPanel. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java
-			. beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException
-			( ) ;} } );
+			southernPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
+			border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER
+			, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font
+			.BOLD ,12 ), java. awt. Color. red) ,southernPanel. getBorder( )) ); southernPanel. addPropertyChangeListener (
+			new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er"
+			.equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 			southernPanel.setLayout(null);
 
 			{
@@ -453,6 +493,9 @@ public class MainFrame extends JFrame {
 	private JMenuBar menuBar1;
 	private JMenu menu1;
 	private JMenuItem menuOpen;
+	private JMenuItem miExport;
+	private JMenuItem menuItem3;
+	private JMenuItem menuItem1;
 	private JPanel southernPanel;
 	private JPanel canvasP;
 	private JPanel controlPanel;
@@ -493,7 +536,7 @@ public class MainFrame extends JFrame {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					if(ViewerController.instance != null)
+					if(ModelConverter.adjustedModel.getInstance() != null)
 						updateModelInstance();
 				}
 			});
@@ -505,7 +548,7 @@ public class MainFrame extends JFrame {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					if(ViewerController.instance != null)
+					if(ModelConverter.adjustedModel.instance != null)
 						updateModelInstance();
 				}
 			});
@@ -519,7 +562,7 @@ public class MainFrame extends JFrame {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					if(ViewerController.instance != null)
+					if(ModelConverter.adjustedModel.instance != null)
 						updateModelInstance();
 				}
 			});

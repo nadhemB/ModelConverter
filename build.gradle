@@ -56,12 +56,12 @@ project(":desktop") {
 project(":core") {
     apply plugin: "java-library"
 
-
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        
+        // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
+        compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.10'
     }
 }
