@@ -10,14 +10,14 @@ import java.io.IOException;
 public class AdjustedModel {
 
 	private String  modelPath;
-	public ModelInfo info = new ModelInfo();
+	public ModelAdjustment info = new ModelAdjustment();
 	public ModelInstance instance;
 
 	public AdjustedModel(){}
 	public AdjustedModel(String path,ModelInstance instance){
 		this.modelPath = path;
 		this.instance = instance;
-		ModelInfo infoX = new ModelInfo(instance);
+		ModelAdjustment infoX = new ModelAdjustment(instance);
 		info.setScale(infoX.getScale());
 		info.setTranslation(infoX.getTranslation());
 		info.setRotation(infoX.getRotation());
@@ -28,7 +28,7 @@ public class AdjustedModel {
 
 		FileOutputStream fos = null;
 		File modelFile = new File(path + File.separator + "model.g3dj");
-		File configFile = new File(path + File.separator + "config.xml");
+		File configFile = new File(path + File.separator + "adjustment.xml");
 		modelFile.getParentFile().mkdirs();
 		try {
 			modelFile.createNewFile();
@@ -68,11 +68,11 @@ public class AdjustedModel {
 		this.modelPath = modelPath;
 	}
 
-	public ModelInfo getInfo() {
+	public ModelAdjustment getInfo() {
 		return info;
 	}
 
-	public void setInfo(ModelInfo info) {
+	public void setInfo(ModelAdjustment info) {
 		this.info = info;
 	}
 
@@ -82,7 +82,7 @@ public class AdjustedModel {
 
 	public void setInstance(ModelInstance instance) {
 		this.instance = instance;
-		ModelInfo infoX = new ModelInfo(instance);
+		ModelAdjustment infoX = new ModelAdjustment(instance);
 		info.setRotation(infoX.getRotation());
 		info.setTranslation(infoX.getTranslation());
 		info.setScale(infoX.getScale());

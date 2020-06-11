@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.frs.supercad.ModelConverter;
 import com.frs.supercad.assets.ModelAsset;
-import com.frs.supercad.modelviewer.ModelInfo;
+import com.frs.supercad.modelviewer.ModelAdjustment;
 import com.frs.supercad.modelviewer.ViewerController;
 import com.frs.supercad.utilities.IOUtilities;
 import java.awt.*;
@@ -32,12 +32,12 @@ public class MainFrame extends JFrame {
 
 	Game app = new ModelConverter();
 	LwjglCanvas canvas;
-	public ModelInfo info = ModelConverter.adjustedModel.getInfo();
+	public ModelAdjustment info = ModelConverter.adjustedModel.getInfo();
 
 	public MainFrame(LwjglApplicationConfiguration config) {
 		canvas = new LwjglCanvas(app, config);
 		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -67,20 +67,20 @@ public class MainFrame extends JFrame {
 	}
 
 	private void addTextFieldListener() {
-		this.tfTranslZ.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfTranslY.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfTranslX.getDocument().addDocumentListener(new CustomDocumentListener());
+		this.tfTranslZ.getDocument().addDocumentListener(new CustomDocumentListener(this.tfTranslZ));
+		this.tfTranslY.getDocument().addDocumentListener(new CustomDocumentListener(tfTranslY));
+		this.tfTranslX.getDocument().addDocumentListener(new CustomDocumentListener(tfTranslX));
 
-		this.tfScaleX.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfScaleY.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfScaleZ.getDocument().addDocumentListener(new CustomDocumentListener());
+		this.tfScaleX.getDocument().addDocumentListener(new CustomDocumentListener(tfScaleX));
+		this.tfScaleY.getDocument().addDocumentListener(new CustomDocumentListener(tfScaleY));
+		this.tfScaleZ.getDocument().addDocumentListener(new CustomDocumentListener(tfScaleZ));
 
-		this.tfRotX.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfRotY.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfRotZ.getDocument().addDocumentListener(new CustomDocumentListener());
-		this.tfRotW.getDocument().addDocumentListener(new CustomDocumentListener());
+		this.tfRotX.getDocument().addDocumentListener(new CustomDocumentListener(tfRotX));
+		this.tfRotY.getDocument().addDocumentListener(new CustomDocumentListener(tfRotY));
+		this.tfRotZ.getDocument().addDocumentListener(new CustomDocumentListener(tfRotZ));
+		this.tfRotW.getDocument().addDocumentListener(new CustomDocumentListener(tfRotW));
 
-
+		this.tfModelName.getDocument().addDocumentListener(new CustomDocumentListener(tfModelName));
 
 
 	}
@@ -107,6 +107,8 @@ public class MainFrame extends JFrame {
 			this.tfRotY.setText(info.getRotation().y + "");
 			this.tfRotZ.setText(info.getRotation().z + "");
 			this.tfRotW.setText(info.getRotation().w + "");
+
+			this.tfModelName.setText(info.getName());
 		}
 
 
@@ -146,10 +148,10 @@ public class MainFrame extends JFrame {
 	}
 
 	public void updateModelInstance(){
-	Vector3 scale = new Vector3();
-	Vector3 translation = new Vector3();
-	Quaternion rotation = new Quaternion();
-	try{
+		Vector3 scale = new Vector3();
+		Vector3 translation = new Vector3();
+		Quaternion rotation = new Quaternion();
+
 		scale.x = Float.parseFloat(this.tfScaleX.getText());
 		scale.y = Float.parseFloat(this.tfScaleY.getText());
 		scale.z = Float.parseFloat(this.tfScaleZ.getText());
@@ -163,17 +165,14 @@ public class MainFrame extends JFrame {
 		rotation.z = Float.parseFloat(this.tfRotZ.getText());
 		rotation.w = Float.parseFloat(this.tfRotW.getText());
 
-
-	}catch(Exception e){
-		scale = new Vector3();
-		translation = new Vector3();
-		rotation = new Quaternion();
-	}
+		String name = tfModelName.getText();
 
 		ModelConverter.adjustedModel.getInfo().setRotation(rotation);
 		ModelConverter.adjustedModel.getInfo().setTranslation(translation);
 		ModelConverter.adjustedModel.getInfo().setScale(scale);
+		ModelConverter.adjustedModel.getInfo().setName(name);
 		ModelConverter.adjustedModel.applyTransforms();
+
 
 	}
 
@@ -193,10 +192,12 @@ public class MainFrame extends JFrame {
 
 	}
 
-
-
-
-
+	private void btnUUIDGenMouseClicked(MouseEvent e) {
+		if(e.getButton() == MouseEvent.BUTTON1){
+			info.generateUUID();
+			this.tfUUID.setText(info.getUuid().toString());
+		}
+	}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -238,6 +239,12 @@ public class MainFrame extends JFrame {
 		tfRotZ = new JTextField();
 		label14 = new JLabel();
 		tfRotW = new JTextField();
+		panel2 = new JPanel();
+		label1 = new JLabel();
+		tfModelName = new JTextField();
+		label15 = new JLabel();
+		tfUUID = new JTextField();
+		btnUUIDGen = new JButton();
 
 		//======== this ========
 		setMinimumSize(new Dimension(720, 720));
@@ -280,12 +287,11 @@ public class MainFrame extends JFrame {
 			southernPanel.setBackground(new Color(51, 51, 51));
 			southernPanel.setMinimumSize(new Dimension(720, 30));
 			southernPanel.setPreferredSize(new Dimension(720, 50));
-			southernPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-			border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER
-			, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font
-			.BOLD ,12 ), java. awt. Color. red) ,southernPanel. getBorder( )) ); southernPanel. addPropertyChangeListener (
-			new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er"
-			.equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+			southernPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+			0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+			. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+			red) ,southernPanel. getBorder( )) ); southernPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+			beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 			southernPanel.setLayout(null);
 
 			{
@@ -327,7 +333,7 @@ public class MainFrame extends JFrame {
 				{
 					panel1.setBackground(SystemColor.windowText);
 					panel1.setBorder(null);
-					panel1.setForeground(SystemColor.text);
+					panel1.setForeground(SystemColor.textText);
 					panel1.setLayout(new GridLayout(6, 2, 2, 2));
 
 					//---- label9 ----
@@ -477,8 +483,59 @@ public class MainFrame extends JFrame {
 					panel1.add(panel5);
 				}
 				tabbedPane1.addTab("General", panel1);
-				tabbedPane1.setBackgroundAt(0, Color.black);
-				tabbedPane1.setForegroundAt(0, SystemColor.text);
+
+				//======== panel2 ========
+				{
+					panel2.setForeground(SystemColor.textHighlightText);
+					panel2.setBackground(SystemColor.desktop);
+					panel2.setLayout(null);
+
+					//---- label1 ----
+					label1.setText("model name:");
+					label1.setForeground(SystemColor.text);
+					panel2.add(label1);
+					label1.setBounds(5, 15, 65, label1.getPreferredSize().height);
+					panel2.add(tfModelName);
+					tfModelName.setBounds(70, 10, 170, tfModelName.getPreferredSize().height);
+
+					//---- label15 ----
+					label15.setText("uuid");
+					label15.setForeground(SystemColor.textHighlightText);
+					panel2.add(label15);
+					label15.setBounds(new Rectangle(new Point(15, 40), label15.getPreferredSize()));
+
+					//---- tfUUID ----
+					tfUUID.setEnabled(false);
+					panel2.add(tfUUID);
+					tfUUID.setBounds(70, 40, 85, tfUUID.getPreferredSize().height);
+
+					//---- btnUUIDGen ----
+					btnUUIDGen.setText("generate");
+					btnUUIDGen.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							btnUUIDGenMouseClicked(e);
+						}
+					});
+					panel2.add(btnUUIDGen);
+					btnUUIDGen.setBounds(165, 40, 77, btnUUIDGen.getPreferredSize().height);
+
+					{
+						// compute preferred size
+						Dimension preferredSize = new Dimension();
+						for(int i = 0; i < panel2.getComponentCount(); i++) {
+							Rectangle bounds = panel2.getComponent(i).getBounds();
+							preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+							preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+						}
+						Insets insets = panel2.getInsets();
+						preferredSize.width += insets.right;
+						preferredSize.height += insets.bottom;
+						panel2.setMinimumSize(preferredSize);
+						panel2.setPreferredSize(preferredSize);
+					}
+				}
+				tabbedPane1.addTab("Reference", panel2);
 			}
 			controlPanel.add(tabbedPane1, BorderLayout.NORTH);
 		}
@@ -527,9 +584,22 @@ public class MainFrame extends JFrame {
 	private JTextField tfRotZ;
 	private JLabel label14;
 	private JTextField tfRotW;
+	private JPanel panel2;
+	private JLabel label1;
+	private JTextField tfModelName;
+	private JLabel label15;
+	private JTextField tfUUID;
+	private JButton btnUUIDGen;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
 	class CustomDocumentListener implements DocumentListener{
+
+		private JTextField source;
+
+		public CustomDocumentListener(JTextField source) {
+			this.source = source;
+		}
+
 		@Override
 		public void insertUpdate(DocumentEvent e) {
 			System.out.println("handling insert  ...");
@@ -537,7 +607,7 @@ public class MainFrame extends JFrame {
 				@Override
 				public void run() {
 					if(ModelConverter.adjustedModel.getInstance() != null)
-						updateModelInstance();
+							updateModelInstance();
 				}
 			});
 		}
@@ -549,7 +619,7 @@ public class MainFrame extends JFrame {
 				@Override
 				public void run() {
 					if(ModelConverter.adjustedModel.instance != null)
-						updateModelInstance();
+							updateModelInstance();
 				}
 			});
 
