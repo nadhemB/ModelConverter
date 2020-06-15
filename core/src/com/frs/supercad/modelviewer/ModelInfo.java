@@ -1,6 +1,7 @@
 package com.frs.supercad.modelviewer;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -13,7 +14,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 @XStreamAlias("adjustment")
-public class ModelAdjustment implements Serializable {
+public class ModelInfo implements Serializable {
 
 
 	UUID uuid;
@@ -21,14 +22,15 @@ public class ModelAdjustment implements Serializable {
 	Vector3 translation = new Vector3();
 	Quaternion rotation = new Quaternion();
 	Properties properties = new Properties();
+	Matrix4 transform = new Matrix4();
 
 	@XStreamOmitField
 	PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
-	public ModelAdjustment(){
+	public ModelInfo(){
 
 	}
-	public ModelAdjustment(ModelInstance instance){
+	public ModelInfo(ModelInstance instance){
 
 		instance.transform.getTranslation(translation);
 		instance.transform.getScale(scale);

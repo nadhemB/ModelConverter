@@ -10,14 +10,14 @@ import java.io.IOException;
 public class AdjustedModel {
 
 	private String  modelPath;
-	public ModelAdjustment info = new ModelAdjustment();
+	public ModelInfo info = new ModelInfo();
 	public ModelInstance instance;
 
 	public AdjustedModel(){}
 	public AdjustedModel(String path,ModelInstance instance){
 		this.modelPath = path;
 		this.instance = instance;
-		ModelAdjustment infoX = new ModelAdjustment(instance);
+		ModelInfo infoX = new ModelInfo(instance);
 		info.setScale(infoX.getScale());
 		info.setTranslation(infoX.getTranslation());
 		info.setRotation(infoX.getRotation());
@@ -69,11 +69,11 @@ public class AdjustedModel {
 		this.modelPath = modelPath;
 	}
 
-	public ModelAdjustment getInfo() {
+	public ModelInfo getInfo() {
 		return info;
 	}
 
-	public void setInfo(ModelAdjustment info) {
+	public void setInfo(ModelInfo info) {
 		this.info = info;
 	}
 
@@ -83,7 +83,7 @@ public class AdjustedModel {
 
 	public void setInstance(ModelInstance instance) {
 		this.instance = instance;
-		ModelAdjustment infoX = new ModelAdjustment(instance);
+		ModelInfo infoX = new ModelInfo(instance);
 		info.setRotation(infoX.getRotation());
 		info.setTranslation(infoX.getTranslation());
 		info.setScale(infoX.getScale());

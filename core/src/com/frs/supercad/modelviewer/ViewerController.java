@@ -11,6 +11,9 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.frs.supercad.ModelConverter;
 import com.sun.j3d.utils.applet.MainFrame;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 
 public class ViewerController {
 
@@ -19,13 +22,23 @@ public class ViewerController {
 	ModelBatch batch;
 	ModelBuilder modelBuilder;
 	ModelInstance grid;
+	ModelInstance instance;
 
-
+	ModelConverter mc = ModelConverter.instance;
 
 
 	public ViewerController(){
 		init();
 		createBackground();
+		mc.addPropertyChangeLstener(new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				Gdx.app.debug(PropertyChangeListener.class.getName(),"catching event.."  );
+				instance = new ModelInstance(ModelConverter.instance.getModel());
+			}
+		});
+
+
 	}
 
 	void init(){
@@ -38,11 +51,8 @@ public class ViewerController {
 		camera.update();
 		cameraController = new CameraController(camera);
 		Gdx.input.setInputProcessor(cameraController);
-
 		batch = new ModelBatch();
-
 		modelBuilder = new ModelBuilder();
-
 	}
 
 	public void createBackground(){
@@ -52,21 +62,9 @@ public class ViewerController {
 		grid = new ModelInstance(gridModel);
 	}
 
-
-	public static void createModelInstance(String path, Model model){
-		ModelConverter.adjustedModel.setModelPath(path);
-		ModelConverter.adjustedModel.setInstance(new ModelInstance(model));
-
+	public ModelInstance getInstance() {
+		return instance;
 	}
-
-	public  void updateModelProperty(){
-		if(ModelConverter.adjustedModel.getInstance() != null){
-
-			ModelConverter.adjustedModel.applyTransforms();
-		}
-
-	}
-
 
 
 }

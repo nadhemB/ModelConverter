@@ -29,8 +29,8 @@ public class ViewerScreen implements Screen {
 
 		controller.batch.begin(controller.camera);
 		controller.batch.render(controller.grid);
-		if(ModelConverter.adjustedModel.getInstance() != null)
-			controller.batch.render(ModelConverter.adjustedModel.getInstance());
+		if(controller.getInstance() != null)
+			controller.batch.render(controller.getInstance());
 		controller.batch.end();
 	}
 

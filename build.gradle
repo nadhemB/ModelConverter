@@ -62,6 +62,8 @@ project(":core") {
         api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
-        compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.10'
+        compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.12'
+
+
     }
 }
