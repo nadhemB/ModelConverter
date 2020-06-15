@@ -55,7 +55,6 @@ public class ViewerController {
 
 	public static void createModelInstance(String path, Model model){
 		ModelConverter.adjustedModel.setModelPath(path);
-		ModelConverter.adjustedModel.getInfo().setName(path);
 		ModelConverter.adjustedModel.setInstance(new ModelInstance(model));
 
 	}

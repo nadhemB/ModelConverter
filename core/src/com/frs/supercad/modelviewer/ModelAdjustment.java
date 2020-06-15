@@ -9,16 +9,18 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.Properties;
 import java.util.UUID;
 
 @XStreamAlias("adjustment")
 public class ModelAdjustment implements Serializable {
 
-	String name = "";
+
 	UUID uuid;
 	Vector3 scale = new Vector3();
 	Vector3 translation = new Vector3();
 	Quaternion rotation = new Quaternion();
+	Properties properties = new Properties();
 
 	@XStreamOmitField
 	PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
@@ -45,13 +47,6 @@ public class ModelAdjustment implements Serializable {
 	//getters and setters
 
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public UUID getUuid() {
 		return uuid;

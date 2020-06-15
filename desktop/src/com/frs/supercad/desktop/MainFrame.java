@@ -5,6 +5,7 @@
 package com.frs.supercad.desktop;
 
 import java.awt.event.*;
+import javax.swing.table.*;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
@@ -108,7 +109,7 @@ public class MainFrame extends JFrame {
 			this.tfRotZ.setText(info.getRotation().z + "");
 			this.tfRotW.setText(info.getRotation().w + "");
 
-			this.tfModelName.setText(info.getName());
+			//this.tfModelName.setText(info.getName());
 		}
 
 
@@ -208,10 +209,11 @@ public class MainFrame extends JFrame {
 		miExport = new JMenuItem();
 		menuItem3 = new JMenuItem();
 		menuItem1 = new JMenuItem();
-		southernPanel = new JPanel();
 		canvasP = new JPanel();
+		southernPanel = new JPanel();
 		controlPanel = new JPanel();
 		tabbedPane1 = new JTabbedPane();
+		panel6 = new JPanel();
 		panel1 = new JPanel();
 		label9 = new JLabel();
 		panel3 = new JPanel();
@@ -239,6 +241,18 @@ public class MainFrame extends JFrame {
 		tfRotZ = new JTextField();
 		label14 = new JLabel();
 		tfRotW = new JTextField();
+		panel7 = new JPanel();
+		label16 = new JLabel();
+		tTransform = new JTable();
+		panel8 = new JPanel();
+		label17 = new JLabel();
+		table1 = new JTable();
+		panel9 = new JPanel();
+		label18 = new JLabel();
+		label19 = new JLabel();
+		table2 = new JTable();
+		label20 = new JLabel();
+		spinner1 = new JSpinner();
 		panel2 = new JPanel();
 		label1 = new JLabel();
 		tfModelName = new JTextField();
@@ -282,38 +296,39 @@ public class MainFrame extends JFrame {
 		}
 		setJMenuBar(menuBar1);
 
-		//======== southernPanel ========
-		{
-			southernPanel.setBackground(new Color(51, 51, 51));
-			southernPanel.setMinimumSize(new Dimension(720, 30));
-			southernPanel.setPreferredSize(new Dimension(720, 50));
-			southernPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-			0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-			. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-			red) ,southernPanel. getBorder( )) ); southernPanel. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-			beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
-			southernPanel.setLayout(null);
-
-			{
-				// compute preferred size
-				Dimension preferredSize = new Dimension();
-				for(int i = 0; i < southernPanel.getComponentCount(); i++) {
-					Rectangle bounds = southernPanel.getComponent(i).getBounds();
-					preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-					preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-				}
-				Insets insets = southernPanel.getInsets();
-				preferredSize.width += insets.right;
-				preferredSize.height += insets.bottom;
-				southernPanel.setMinimumSize(preferredSize);
-				southernPanel.setPreferredSize(preferredSize);
-			}
-		}
-		contentPane.add(southernPanel, BorderLayout.SOUTH);
-
 		//======== canvasP ========
 		{
+			canvasP.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
+			border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER
+			,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font
+			.BOLD,12),java.awt.Color.red),canvasP. getBorder()));canvasP. addPropertyChangeListener(
+			new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r"
+			.equals(e.getPropertyName()))throw new RuntimeException();}});
 			canvasP.setLayout(new BorderLayout());
+
+			//======== southernPanel ========
+			{
+				southernPanel.setBackground(new Color(51, 51, 51));
+				southernPanel.setMinimumSize(new Dimension(720, 30));
+				southernPanel.setPreferredSize(new Dimension(720, 50));
+				southernPanel.setLayout(null);
+
+				{
+					// compute preferred size
+					Dimension preferredSize = new Dimension();
+					for(int i = 0; i < southernPanel.getComponentCount(); i++) {
+						Rectangle bounds = southernPanel.getComponent(i).getBounds();
+						preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+						preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+					}
+					Insets insets = southernPanel.getInsets();
+					preferredSize.width += insets.right;
+					preferredSize.height += insets.bottom;
+					southernPanel.setMinimumSize(preferredSize);
+					southernPanel.setPreferredSize(preferredSize);
+				}
+			}
+			canvasP.add(southernPanel, BorderLayout.SOUTH);
 		}
 		contentPane.add(canvasP, BorderLayout.CENTER);
 
@@ -329,160 +344,370 @@ public class MainFrame extends JFrame {
 				tabbedPane1.setBackground(SystemColor.desktop);
 				tabbedPane1.setOpaque(true);
 
-				//======== panel1 ========
+				//======== panel6 ========
 				{
-					panel1.setBackground(SystemColor.windowText);
-					panel1.setBorder(null);
-					panel1.setForeground(SystemColor.textText);
-					panel1.setLayout(new GridLayout(6, 2, 2, 2));
+					panel6.setBackground(SystemColor.desktop);
+					panel6.setLayout(null);
 
-					//---- label9 ----
-					label9.setText("scale");
-					label9.setForeground(SystemColor.text);
-					panel1.add(label9);
-
-					//======== panel3 ========
+					//======== panel1 ========
 					{
-						panel3.setBackground(SystemColor.desktop);
-						panel3.setLayout(new GridLayout(0, 6, 5, 0));
+						panel1.setBackground(SystemColor.windowText);
+						panel1.setBorder(null);
+						panel1.setForeground(SystemColor.textText);
+						panel1.setLayout(new GridLayout(6, 2, 2, 2));
 
-						//---- label2 ----
-						label2.setText("X:");
-						label2.setHorizontalAlignment(SwingConstants.CENTER);
-						label2.setForeground(SystemColor.text);
-						panel3.add(label2);
+						//---- label9 ----
+						label9.setText("scale");
+						label9.setForeground(SystemColor.text);
+						panel1.add(label9);
 
-						//---- tfScaleX ----
-						tfScaleX.setForeground(Color.white);
-						tfScaleX.setBackground(SystemColor.desktop);
-						panel3.add(tfScaleX);
+						//======== panel3 ========
+						{
+							panel3.setBackground(SystemColor.desktop);
+							panel3.setLayout(new GridLayout(0, 6, 5, 0));
 
-						//---- label3 ----
-						label3.setText("Y:");
-						label3.setHorizontalAlignment(SwingConstants.CENTER);
-						label3.setForeground(Color.white);
-						panel3.add(label3);
+							//---- label2 ----
+							label2.setText("X:");
+							label2.setHorizontalAlignment(SwingConstants.CENTER);
+							label2.setForeground(SystemColor.text);
+							panel3.add(label2);
 
-						//---- tfScaleY ----
-						tfScaleY.setBackground(SystemColor.desktop);
-						tfScaleY.setForeground(Color.white);
-						panel3.add(tfScaleY);
+							//---- tfScaleX ----
+							tfScaleX.setForeground(Color.white);
+							tfScaleX.setBackground(SystemColor.desktop);
+							panel3.add(tfScaleX);
 
-						//---- label4 ----
-						label4.setText("Z:");
-						label4.setHorizontalAlignment(SwingConstants.CENTER);
-						label4.setForeground(Color.white);
-						panel3.add(label4);
+							//---- label3 ----
+							label3.setText("Y:");
+							label3.setHorizontalAlignment(SwingConstants.CENTER);
+							label3.setForeground(Color.white);
+							panel3.add(label3);
 
-						//---- tfScaleZ ----
-						tfScaleZ.setBackground(Color.black);
-						tfScaleZ.setForeground(Color.white);
-						panel3.add(tfScaleZ);
+							//---- tfScaleY ----
+							tfScaleY.setBackground(SystemColor.desktop);
+							tfScaleY.setForeground(Color.white);
+							panel3.add(tfScaleY);
+
+							//---- label4 ----
+							label4.setText("Z:");
+							label4.setHorizontalAlignment(SwingConstants.CENTER);
+							label4.setForeground(Color.white);
+							panel3.add(label4);
+
+							//---- tfScaleZ ----
+							tfScaleZ.setBackground(Color.black);
+							tfScaleZ.setForeground(Color.white);
+							panel3.add(tfScaleZ);
+						}
+						panel1.add(panel3);
+
+						//---- label5 ----
+						label5.setText("translation");
+						label5.setForeground(SystemColor.text);
+						panel1.add(label5);
+
+						//======== panel4 ========
+						{
+							panel4.setBackground(SystemColor.desktop);
+							panel4.setLayout(new GridLayout(0, 6, 5, 0));
+
+							//---- label6 ----
+							label6.setText("X:");
+							label6.setHorizontalAlignment(SwingConstants.CENTER);
+							label6.setForeground(SystemColor.text);
+							panel4.add(label6);
+
+							//---- tfTranslX ----
+							tfTranslX.setForeground(Color.white);
+							tfTranslX.setBackground(SystemColor.desktop);
+							panel4.add(tfTranslX);
+
+							//---- label7 ----
+							label7.setText("Y:");
+							label7.setHorizontalAlignment(SwingConstants.CENTER);
+							label7.setForeground(Color.white);
+							panel4.add(label7);
+
+							//---- tfTranslY ----
+							tfTranslY.setBackground(SystemColor.desktop);
+							tfTranslY.setForeground(Color.white);
+							panel4.add(tfTranslY);
+
+							//---- label8 ----
+							label8.setText("Z:");
+							label8.setHorizontalAlignment(SwingConstants.CENTER);
+							label8.setForeground(Color.white);
+							panel4.add(label8);
+
+							//---- tfTranslZ ----
+							tfTranslZ.setBackground(Color.black);
+							tfTranslZ.setForeground(Color.white);
+							panel4.add(tfTranslZ);
+						}
+						panel1.add(panel4);
+
+						//---- label10 ----
+						label10.setText("rotation");
+						label10.setForeground(SystemColor.text);
+						panel1.add(label10);
+
+						//======== panel5 ========
+						{
+							panel5.setBackground(SystemColor.desktop);
+							panel5.setLayout(new GridLayout(0, 8, 5, 0));
+
+							//---- label11 ----
+							label11.setText("X:");
+							label11.setHorizontalAlignment(SwingConstants.CENTER);
+							label11.setForeground(SystemColor.text);
+							panel5.add(label11);
+
+							//---- tfRotX ----
+							tfRotX.setForeground(Color.white);
+							tfRotX.setBackground(SystemColor.desktop);
+							panel5.add(tfRotX);
+
+							//---- label12 ----
+							label12.setText("Y:");
+							label12.setHorizontalAlignment(SwingConstants.CENTER);
+							label12.setForeground(Color.white);
+							panel5.add(label12);
+
+							//---- tfRotY ----
+							tfRotY.setBackground(SystemColor.desktop);
+							tfRotY.setForeground(Color.white);
+							panel5.add(tfRotY);
+
+							//---- label13 ----
+							label13.setText("Z:");
+							label13.setHorizontalAlignment(SwingConstants.CENTER);
+							label13.setForeground(Color.white);
+							panel5.add(label13);
+
+							//---- tfRotZ ----
+							tfRotZ.setBackground(Color.black);
+							tfRotZ.setForeground(Color.white);
+							panel5.add(tfRotZ);
+
+							//---- label14 ----
+							label14.setText("W:");
+							label14.setHorizontalAlignment(SwingConstants.CENTER);
+							label14.setForeground(SystemColor.text);
+							panel5.add(label14);
+
+							//---- tfRotW ----
+							tfRotW.setForeground(Color.white);
+							tfRotW.setBackground(SystemColor.desktop);
+							panel5.add(tfRotW);
+						}
+						panel1.add(panel5);
 					}
-					panel1.add(panel3);
+					panel6.add(panel1);
+					panel1.setBounds(0, 0, 245, panel1.getPreferredSize().height);
 
-					//---- label5 ----
-					label5.setText("translation");
-					label5.setForeground(SystemColor.text);
-					panel1.add(label5);
-
-					//======== panel4 ========
+					//======== panel7 ========
 					{
-						panel4.setBackground(SystemColor.desktop);
-						panel4.setLayout(new GridLayout(0, 6, 5, 0));
+						panel7.setBackground(SystemColor.desktop);
+						panel7.setLayout(null);
 
-						//---- label6 ----
-						label6.setText("X:");
-						label6.setHorizontalAlignment(SwingConstants.CENTER);
-						label6.setForeground(SystemColor.text);
-						panel4.add(label6);
+						//---- label16 ----
+						label16.setText("transform");
+						label16.setForeground(SystemColor.text);
+						panel7.add(label16);
+						label16.setBounds(new Rectangle(new Point(0, 0), label16.getPreferredSize()));
 
-						//---- tfTranslX ----
-						tfTranslX.setForeground(Color.white);
-						tfTranslX.setBackground(SystemColor.desktop);
-						panel4.add(tfTranslX);
+						//---- tTransform ----
+						tTransform.setModel(new DefaultTableModel(
+							new Object[][] {
+								{null, null, null, null},
+								{null, null, null, null},
+								{null, null, null, null},
+							},
+							new String[] {
+								null, null, null, null
+							}
+						));
+						tTransform.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+						tTransform.setCellSelectionEnabled(true);
+						tTransform.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+						tTransform.setAutoscrolls(false);
+						tTransform.setAutoCreateColumnsFromModel(false);
+						panel7.add(tTransform);
+						tTransform.setBounds(40, 25, 155, 50);
 
-						//---- label7 ----
-						label7.setText("Y:");
-						label7.setHorizontalAlignment(SwingConstants.CENTER);
-						label7.setForeground(Color.white);
-						panel4.add(label7);
-
-						//---- tfTranslY ----
-						tfTranslY.setBackground(SystemColor.desktop);
-						tfTranslY.setForeground(Color.white);
-						panel4.add(tfTranslY);
-
-						//---- label8 ----
-						label8.setText("Z:");
-						label8.setHorizontalAlignment(SwingConstants.CENTER);
-						label8.setForeground(Color.white);
-						panel4.add(label8);
-
-						//---- tfTranslZ ----
-						tfTranslZ.setBackground(Color.black);
-						tfTranslZ.setForeground(Color.white);
-						panel4.add(tfTranslZ);
+						{
+							// compute preferred size
+							Dimension preferredSize = new Dimension();
+							for(int i = 0; i < panel7.getComponentCount(); i++) {
+								Rectangle bounds = panel7.getComponent(i).getBounds();
+								preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+								preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+							}
+							Insets insets = panel7.getInsets();
+							preferredSize.width += insets.right;
+							preferredSize.height += insets.bottom;
+							panel7.setMinimumSize(preferredSize);
+							panel7.setPreferredSize(preferredSize);
+						}
 					}
-					panel1.add(panel4);
+					panel6.add(panel7);
+					panel7.setBounds(0, 135, 245, 85);
 
-					//---- label10 ----
-					label10.setText("rotation");
-					label10.setForeground(SystemColor.text);
-					panel1.add(label10);
-
-					//======== panel5 ========
+					//======== panel8 ========
 					{
-						panel5.setBackground(SystemColor.desktop);
-						panel5.setLayout(new GridLayout(0, 8, 5, 0));
+						panel8.setBackground(SystemColor.desktop);
+						panel8.setForeground(SystemColor.text);
+						panel8.setLayout(null);
 
-						//---- label11 ----
-						label11.setText("X:");
-						label11.setHorizontalAlignment(SwingConstants.CENTER);
-						label11.setForeground(SystemColor.text);
-						panel5.add(label11);
+						//---- label17 ----
+						label17.setText("dimension:");
+						label17.setForeground(SystemColor.text);
+						panel8.add(label17);
+						label17.setBounds(new Rectangle(new Point(0, 0), label17.getPreferredSize()));
 
-						//---- tfRotX ----
-						tfRotX.setForeground(Color.white);
-						tfRotX.setBackground(SystemColor.desktop);
-						panel5.add(tfRotX);
-
-						//---- label12 ----
-						label12.setText("Y:");
-						label12.setHorizontalAlignment(SwingConstants.CENTER);
-						label12.setForeground(Color.white);
-						panel5.add(label12);
-
-						//---- tfRotY ----
-						tfRotY.setBackground(SystemColor.desktop);
-						tfRotY.setForeground(Color.white);
-						panel5.add(tfRotY);
-
-						//---- label13 ----
-						label13.setText("Z:");
-						label13.setHorizontalAlignment(SwingConstants.CENTER);
-						label13.setForeground(Color.white);
-						panel5.add(label13);
-
-						//---- tfRotZ ----
-						tfRotZ.setBackground(Color.black);
-						tfRotZ.setForeground(Color.white);
-						panel5.add(tfRotZ);
-
-						//---- label14 ----
-						label14.setText("W:");
-						label14.setHorizontalAlignment(SwingConstants.CENTER);
-						label14.setForeground(SystemColor.text);
-						panel5.add(label14);
-
-						//---- tfRotW ----
-						tfRotW.setForeground(Color.white);
-						tfRotW.setBackground(SystemColor.desktop);
-						panel5.add(tfRotW);
+						{
+							// compute preferred size
+							Dimension preferredSize = new Dimension();
+							for(int i = 0; i < panel8.getComponentCount(); i++) {
+								Rectangle bounds = panel8.getComponent(i).getBounds();
+								preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+								preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+							}
+							Insets insets = panel8.getInsets();
+							preferredSize.width += insets.right;
+							preferredSize.height += insets.bottom;
+							panel8.setMinimumSize(preferredSize);
+							panel8.setPreferredSize(preferredSize);
+						}
 					}
-					panel1.add(panel5);
+					panel6.add(panel8);
+					panel8.setBounds(new Rectangle(new Point(0, 225), panel8.getPreferredSize()));
+
+					//---- table1 ----
+					table1.setModel(new DefaultTableModel(
+						new Object[][] {
+							{null, null, null},
+						},
+						new String[] {
+							"X", "Y", "Z"
+						}
+					) {
+						Class<?>[] columnTypes = new Class<?>[] {
+							Float.class, Float.class, Float.class
+						};
+						@Override
+						public Class<?> getColumnClass(int columnIndex) {
+							return columnTypes[columnIndex];
+						}
+					});
+					{
+						TableColumnModel cm = table1.getColumnModel();
+						cm.getColumn(0).setResizable(false);
+						cm.getColumn(0).setMinWidth(40);
+						cm.getColumn(0).setMaxWidth(60);
+						cm.getColumn(0).setPreferredWidth(50);
+						cm.getColumn(1).setResizable(false);
+						cm.getColumn(1).setMinWidth(40);
+						cm.getColumn(1).setMaxWidth(60);
+						cm.getColumn(1).setPreferredWidth(50);
+						cm.getColumn(2).setResizable(false);
+						cm.getColumn(2).setMinWidth(40);
+						cm.getColumn(2).setMaxWidth(60);
+						cm.getColumn(2).setPreferredWidth(50);
+					}
+					panel6.add(table1);
+					table1.setBounds(new Rectangle(new Point(65, 225), table1.getPreferredSize()));
+
+					//======== panel9 ========
+					{
+						panel9.setLayout(null);
+
+						//---- label18 ----
+						label18.setText("rotation:");
+						panel9.add(label18);
+						label18.setBounds(new Rectangle(new Point(0, 0), label18.getPreferredSize()));
+
+						//---- label19 ----
+						label19.setText("axe:");
+						panel9.add(label19);
+						label19.setBounds(new Rectangle(new Point(20, 20), label19.getPreferredSize()));
+
+						//---- table2 ----
+						table2.setModel(new DefaultTableModel(
+							new Object[][] {
+								{null, null, null},
+							},
+							new String[] {
+								"X", "Y", "Z"
+							}
+						) {
+							Class<?>[] columnTypes = new Class<?>[] {
+								Float.class, Float.class, Float.class
+							};
+							@Override
+							public Class<?> getColumnClass(int columnIndex) {
+								return columnTypes[columnIndex];
+							}
+						});
+						{
+							TableColumnModel cm = table2.getColumnModel();
+							cm.getColumn(0).setResizable(false);
+							cm.getColumn(0).setMinWidth(40);
+							cm.getColumn(0).setMaxWidth(60);
+							cm.getColumn(0).setPreferredWidth(50);
+							cm.getColumn(1).setResizable(false);
+							cm.getColumn(1).setMinWidth(40);
+							cm.getColumn(1).setMaxWidth(60);
+							cm.getColumn(1).setPreferredWidth(50);
+							cm.getColumn(2).setResizable(false);
+							cm.getColumn(2).setMinWidth(40);
+							cm.getColumn(2).setMaxWidth(60);
+							cm.getColumn(2).setPreferredWidth(50);
+						}
+						panel9.add(table2);
+						table2.setBounds(75, 20, 150, 16);
+
+						//---- label20 ----
+						label20.setText("degr\u00e9e:");
+						panel9.add(label20);
+						label20.setBounds(20, 40, 40, 14);
+						panel9.add(spinner1);
+						spinner1.setBounds(75, 40, 35, spinner1.getPreferredSize().height);
+
+						{
+							// compute preferred size
+							Dimension preferredSize = new Dimension();
+							for(int i = 0; i < panel9.getComponentCount(); i++) {
+								Rectangle bounds = panel9.getComponent(i).getBounds();
+								preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+								preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+							}
+							Insets insets = panel9.getInsets();
+							preferredSize.width += insets.right;
+							preferredSize.height += insets.bottom;
+							panel9.setMinimumSize(preferredSize);
+							panel9.setPreferredSize(preferredSize);
+						}
+					}
+					panel6.add(panel9);
+					panel9.setBounds(0, 246, 245, 69);
+
+					{
+						// compute preferred size
+						Dimension preferredSize = new Dimension();
+						for(int i = 0; i < panel6.getComponentCount(); i++) {
+							Rectangle bounds = panel6.getComponent(i).getBounds();
+							preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+							preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+						}
+						Insets insets = panel6.getInsets();
+						preferredSize.width += insets.right;
+						preferredSize.height += insets.bottom;
+						panel6.setMinimumSize(preferredSize);
+						panel6.setPreferredSize(preferredSize);
+					}
 				}
-				tabbedPane1.addTab("General", panel1);
+				tabbedPane1.addTab("text", panel6);
 
 				//======== panel2 ========
 				{
@@ -553,10 +778,11 @@ public class MainFrame extends JFrame {
 	private JMenuItem miExport;
 	private JMenuItem menuItem3;
 	private JMenuItem menuItem1;
-	private JPanel southernPanel;
 	private JPanel canvasP;
+	private JPanel southernPanel;
 	private JPanel controlPanel;
 	private JTabbedPane tabbedPane1;
+	private JPanel panel6;
 	private JPanel panel1;
 	private JLabel label9;
 	private JPanel panel3;
@@ -584,6 +810,18 @@ public class MainFrame extends JFrame {
 	private JTextField tfRotZ;
 	private JLabel label14;
 	private JTextField tfRotW;
+	private JPanel panel7;
+	private JLabel label16;
+	private JTable tTransform;
+	private JPanel panel8;
+	private JLabel label17;
+	private JTable table1;
+	private JPanel panel9;
+	private JLabel label18;
+	private JLabel label19;
+	private JTable table2;
+	private JLabel label20;
+	private JSpinner spinner1;
 	private JPanel panel2;
 	private JLabel label1;
 	private JTextField tfModelName;

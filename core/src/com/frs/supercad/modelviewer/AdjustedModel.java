@@ -44,6 +44,7 @@ public class AdjustedModel {
 
 		try {
 			IOUtilities.copyFileUsingChannel(new File(modelPath),modelFile);
+			info.properties.put("created","lklklklklk");
 			xStream.toXML(info,fos);
 			fos.close();
 		} catch (IOException e) {
