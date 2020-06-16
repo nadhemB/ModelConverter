@@ -1,6 +1,9 @@
 package com.frs.supercad.utilities;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.math.collision.BoundingBox;
+
 
 public class DrawingHelper {
 
@@ -30,6 +33,16 @@ public class DrawingHelper {
 		}
 		pixmap.setFilter(Pixmap.Filter.BiLinear);
 		return pixmap;
+	}
+
+	public static ModelInstance createBoundingBox(ModelInstance instance){
+		float width, height, depth;
+		BoundingBox boundingBox = new BoundingBox();
+		instance.calculateBoundingBox(boundingBox);
+		width = boundingBox.getWidth();
+		height = boundingBox.getHeight();
+		depth = boundingBox.getDepth();
+		return null;
 	}
 
 }

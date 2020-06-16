@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.frs.supercad.modelviewer.AdjustedModel;
 import com.frs.supercad.modelviewer.ViewerScreen;
 
@@ -16,6 +17,7 @@ public class ModelConverter extends Game {
 	private String TAG = ModelConverter.class.getName();
 
 	public  Model model = new Model();
+	public 	ModelInstance modelInstance = null;
 
 	public PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
@@ -36,6 +38,14 @@ public class ModelConverter extends Game {
 		Model oldValue = this.model;
 		this.model = model;
 		this.propertyChangeSupport.firePropertyChange("model",oldValue,this.model);
+	}
+
+	public ModelInstance getModelInstance() {
+		return modelInstance;
+	}
+
+	public void setModelInstance(ModelInstance modelInstance) {
+		this.modelInstance = modelInstance;
 	}
 
 	@Override

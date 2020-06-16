@@ -52,9 +52,10 @@ new FormModel {
 									"preferredSize": new java.awt.Dimension( 80, 30 )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 								add( new FormComponent( "javax.swing.JButton" ) {
-									name: "button1"
+									name: "btnGenerateUUID"
 									"text": "generate"
 									"preferredSize": new java.awt.Dimension( 25, 30 )
+									addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnGenerateUUIDActionPerformed", true ) )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 									"gridx": 1
 								} )
@@ -235,7 +236,7 @@ new FormModel {
 							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 								name: "scrollPane2"
 								add( new FormComponent( "javax.swing.JTable" ) {
-									name: "table2"
+									name: "tTransform"
 									"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 										add( new java.util.Vector {
 											add( null )
@@ -346,6 +347,14 @@ new FormModel {
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 25 )
 			"size": new java.awt.Dimension( 720, 465 )
+		} )
+		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
+			"name": "bindingGroup"
+			addBinding( new FormBinding( "this", "info.name", "textField1", "text" ) )
+			addBinding( new FormBinding( "this", "info.width", "textField5", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "info.height", "textField6", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "info.depth", "textField7", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "info.uuid", "textField2", "text_ON_ACTION_OR_FOCUS_LOST" ) )
 		} )
 	}
 }

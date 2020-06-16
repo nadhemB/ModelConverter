@@ -50,7 +50,9 @@ project(":desktop") {
         api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         compile group: 'com.bulenkov', name: 'darcula', version: '2018.2'
-        
+        compile group: 'org.jdesktop', name: 'beansbinding', version: '1.2.1'
+
+
     }
 }
 

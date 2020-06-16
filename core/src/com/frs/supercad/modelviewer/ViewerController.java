@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.frs.supercad.ModelConverter;
 import com.sun.j3d.utils.applet.MainFrame;
 
@@ -22,12 +24,13 @@ public class ViewerController {
 	ModelBatch batch;
 	ModelBuilder modelBuilder;
 	ModelInstance grid;
-	ModelInstance instance;
+	public static ViewerController controller = new ViewerController();
+	private static ModelInstance instance;
 
 	ModelConverter mc = ModelConverter.instance;
 
 
-	public ViewerController(){
+	private ViewerController(){
 		init();
 		createBackground();
 		mc.addPropertyChangeLstener(new PropertyChangeListener() {
@@ -37,8 +40,6 @@ public class ViewerController {
 				instance = new ModelInstance(ModelConverter.instance.getModel());
 			}
 		});
-
-
 	}
 
 	void init(){
@@ -62,9 +63,25 @@ public class ViewerController {
 		grid = new ModelInstance(gridModel);
 	}
 
+	public void analyseInstance(){
+		BoundingBox box = new BoundingBox();
+		instance.calculateBoundingBox(box);
+
+	}
 	public ModelInstance getInstance() {
 		return instance;
 	}
 
+	public static void setInstance(ModelInstance instance) {
+		ViewerController.instance = instance;
+	}
 
+	public Vector3 getModelDimension() {
+		ModelInstance instance = ModelConverter.instance.getModelInstance();
+		BoundingBox box = new BoundingBox();
+		instance.calculateBoundingBox(box);
+		Vector3 dim = new Vector3();
+		box.getDimensions(dim);
+		return dim;
+	}
 }

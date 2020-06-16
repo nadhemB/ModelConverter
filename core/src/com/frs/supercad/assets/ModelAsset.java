@@ -24,6 +24,7 @@ public class ModelAsset {
 		Gdx.app.log(ModelAsset.class.getName()," finsihed loading " + pathX);
 		Model model = assetManager.get(pathX,Model.class);
 		ModelConverter.instance.setModel(model);
+		ModelConverter.instance.setModelInstance(new ModelInstance(model));
 		return model;
 	}
 

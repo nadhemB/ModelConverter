@@ -16,6 +16,7 @@
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-box2d-platform:natives-desktop:1.9.10" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-freetype-platform:natives-desktop:1.9.10" level="project" />
     <orderEntry type="library" name="Gradle: com.bulenkov:darcula:2018.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jdesktop:beansbinding:1.2.1" level="project" />
     <orderEntry type="module" module-name="core_main" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-backend-headless:1.9.10" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-freetype:1.9.10" level="project" />

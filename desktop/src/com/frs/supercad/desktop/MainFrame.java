@@ -5,28 +5,31 @@
 package com.frs.supercad.desktop;
 
 import java.awt.event.*;
-import javax.swing.border.*;
 import javax.swing.table.*;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
-import com.badlogic.gdx.graphics.g3d.Model;
-import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.bulenkov.darcula.DarculaLaf;
 import com.frs.supercad.ModelConverter;
 import com.frs.supercad.assets.ModelAsset;
 import com.frs.supercad.modelviewer.ModelInfo;
-import com.frs.supercad.modelviewer.ViewerController;
-import com.frs.supercad.utilities.IOUtilities;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeListenerProxy;
 import java.io.*;
+import java.util.UUID;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileSystemView;
+
+import com.frs.supercad.modelviewer.ViewerController;
+import org.jdesktop.beansbinding.*;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+
 
 /**
  * @author sana
@@ -34,17 +37,20 @@ import javax.swing.filechooser.FileSystemView;
 public class MainFrame extends JFrame {
 
 
+    private ModelInfo info;
+
 	LwjglCanvas canvas;
-	public ModelInfo info = new ModelInfo();
 
 	public MainFrame(LwjglApplicationConfiguration config) {
+
+        this.info = new ModelInfo();
+        this.info.setName("model alpha");
 		canvas = new LwjglCanvas(ModelConverter.instance, config);
 
 		UIManager.LookAndFeelInfo[] infos = UIManager.getInstalledLookAndFeels();
 		for(UIManager.LookAndFeelInfo info:infos){
 			System.out.println(info.getClassName());
 		}
-
 		try {
 			UIManager.setLookAndFeel(DarculaLaf.class.getName());
 		} catch (ClassNotFoundException e) {
@@ -57,23 +63,14 @@ public class MainFrame extends JFrame {
 			e.printStackTrace();
 		}
 
+
 		initComponents();
-		addCanvas();
+		displayTransform(null);
+        addCanvas();
 		pack();
-		this.info.addPropertyChangeListener(new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-
-
-					}
-				});
-			}
-		});
 
 	}
+
 
 	private void addCanvas() {
 		pCanvas.add(canvas.getCanvas(),BorderLayout.CENTER);
@@ -82,22 +79,31 @@ public class MainFrame extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
+	private void displayTransform(Matrix4 trans){
+	    if(trans == null)
+	        trans = new Matrix4();
+	    float[] values = trans.getValues();
+        TableModel model = this.tTransform.getModel();
+        model.setValueAt(values[Matrix4.M00],0,0);    model.setValueAt(values[Matrix4.M10],1,0);
+        model.setValueAt(values[Matrix4.M01],0,1);    model.setValueAt(values[Matrix4.M11],1,1);
+        model.setValueAt(values[Matrix4.M02],0,2);    model.setValueAt(values[Matrix4.M12],1,2);
+        model.setValueAt(values[Matrix4.M03],0,3);    model.setValueAt(values[Matrix4.M13],1,3);
 
+        model.setValueAt(values[Matrix4.M20],2,0);    model.setValueAt(values[Matrix4.M30],3,0);
+        model.setValueAt(values[Matrix4.M21],2,1);    model.setValueAt(values[Matrix4.M31],3,1);
+        model.setValueAt(values[Matrix4.M22],2,2);    model.setValueAt(values[Matrix4.M32],3,2);
+        model.setValueAt(values[Matrix4.M23],2,3);    model.setValueAt(values[Matrix4.M33],3,3);
+    }
 
-
-	
-
+	//actions
 	private void menuOpenActionPerformed(ActionEvent e) {
-
 			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-
 			int returnValue = jfc.showOpenDialog(null);
 
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = jfc.getSelectedFile();
-
 				ModelAsset.instance.load(selectedFile.getAbsolutePath());
-
+				getInitialInfo();
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
@@ -105,13 +111,16 @@ public class MainFrame extends JFrame {
 						repaint();
 					}
 				});
-
 			}
-
-
 	}
-
-	
+	public void getInitialInfo(){
+	    if(ModelConverter.instance.getModelInstance() != null){
+            Vector3 dimension = ViewerController.controller.getModelDimension();
+            this.info.setWidth(dimension.x);
+            this.info.setHeight(dimension.y);
+            this.info.setDepth(dimension.z);
+        }
+    }
 
 	private void miExportActionPerformed(ActionEvent e) {
 
@@ -129,8 +138,18 @@ public class MainFrame extends JFrame {
 
 	}
 
+	//getters
+    public ModelInfo getInfo() {
+        return info;
+    }
 
-	private void initComponents() {
+
+    private void btnGenerateUUIDActionPerformed(ActionEvent e) {
+        UUID uuid = UUID.randomUUID();
+        this.info.setUuid(uuid);
+    }
+
+    private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - sana
         menuBar1 = new JMenuBar();
@@ -149,7 +168,7 @@ public class MainFrame extends JFrame {
         label2 = new JLabel();
         panel6 = new JPanel();
         textField2 = new JTextField();
-        button1 = new JButton();
+        btnGenerateUUID = new JButton();
         label7 = new JLabel();
         panel7 = new JPanel();
         label8 = new JLabel();
@@ -172,7 +191,7 @@ public class MainFrame extends JFrame {
         panel10 = new JPanel();
         label6 = new JLabel();
         scrollPane2 = new JScrollPane();
-        table2 = new JTable();
+        tTransform = new JTable();
         panel2 = new JPanel();
         panel3 = new JPanel();
         panel4 = new JPanel();
@@ -216,12 +235,11 @@ public class MainFrame extends JFrame {
 
         //======== pCanvas ========
         {
-            pCanvas.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-            ( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-            . TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,pCanvas. getBorder( )) ); pCanvas. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-            propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
-            ; }} );
+            pCanvas.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
+            0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
+            .BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt.Color.
+            red),pCanvas. getBorder()));pCanvas. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+            beans.PropertyChangeEvent e){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}});
             pCanvas.setLayout(new BorderLayout());
         }
         contentPane.add(pCanvas, BorderLayout.CENTER);
@@ -275,10 +293,11 @@ public class MainFrame extends JFrame {
                                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                                 new Insets(0, 0, 0, 0), 0, 0));
 
-                            //---- button1 ----
-                            button1.setText("generate");
-                            button1.setPreferredSize(new Dimension(25, 30));
-                            panel6.add(button1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                            //---- btnGenerateUUID ----
+                            btnGenerateUUID.setText("generate");
+                            btnGenerateUUID.setPreferredSize(new Dimension(25, 30));
+                            btnGenerateUUID.addActionListener(e -> btnGenerateUUIDActionPerformed(e));
+                            panel6.add(btnGenerateUUID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
                                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                                 new Insets(0, 0, 0, 0), 0, 0));
                         }
@@ -443,8 +462,8 @@ public class MainFrame extends JFrame {
                         //======== scrollPane2 ========
                         {
 
-                            //---- table2 ----
-                            table2.setModel(new DefaultTableModel(
+                            //---- tTransform ----
+                            tTransform.setModel(new DefaultTableModel(
                                 new Object[][] {
                                     {null, null, null, null},
                                     {null, null, null, null},
@@ -464,15 +483,15 @@ public class MainFrame extends JFrame {
                                 }
                             });
                             {
-                                TableColumnModel cm = table2.getColumnModel();
+                                TableColumnModel cm = tTransform.getColumnModel();
                                 cm.getColumn(0).setPreferredWidth(50);
                                 cm.getColumn(1).setPreferredWidth(50);
                                 cm.getColumn(2).setPreferredWidth(50);
                                 cm.getColumn(3).setPreferredWidth(50);
                             }
-                            table2.setPreferredScrollableViewportSize(new Dimension(450, 200));
-                            table2.setRowHeight(30);
-                            scrollPane2.setViewportView(table2);
+                            tTransform.setPreferredScrollableViewportSize(new Dimension(450, 200));
+                            tTransform.setRowHeight(30);
+                            scrollPane2.setViewportView(tTransform);
                         }
                         panel10.add(scrollPane2, BorderLayout.CENTER);
                     }
@@ -503,6 +522,25 @@ public class MainFrame extends JFrame {
         contentPane.add(pControl, BorderLayout.EAST);
         pack();
         setLocationRelativeTo(getOwner());
+
+        //---- bindings ----
+        bindingGroup = new BindingGroup();
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            this, BeanProperty.create("info.name"),
+            textField1, BeanProperty.create("text")));
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            this, BeanProperty.create("info.width"),
+            textField5, BeanProperty.create("text_ON_ACTION_OR_FOCUS_LOST")));
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            this, BeanProperty.create("info.height"),
+            textField6, BeanProperty.create("text_ON_ACTION_OR_FOCUS_LOST")));
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            this, BeanProperty.create("info.depth"),
+            textField7, BeanProperty.create("text_ON_ACTION_OR_FOCUS_LOST")));
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            this, BeanProperty.create("info.uuid"),
+            textField2, BeanProperty.create("text_ON_ACTION_OR_FOCUS_LOST")));
+        bindingGroup.bind();
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -524,7 +562,7 @@ public class MainFrame extends JFrame {
     private JLabel label2;
     private JPanel panel6;
     private JTextField textField2;
-    private JButton button1;
+    private JButton btnGenerateUUID;
     private JLabel label7;
     private JPanel panel7;
     private JLabel label8;
@@ -547,58 +585,13 @@ public class MainFrame extends JFrame {
     private JPanel panel10;
     private JLabel label6;
     private JScrollPane scrollPane2;
-    private JTable table2;
+    private JTable tTransform;
     private JPanel panel2;
     private JPanel panel3;
     private JPanel panel4;
+    private BindingGroup bindingGroup;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 
-	class CustomDocumentListener implements DocumentListener{
-
-		private JTextField source;
-
-		public CustomDocumentListener(JTextField source) {
-			this.source = source;
-		}
-
-		@Override
-		public void insertUpdate(DocumentEvent e) {
-			System.out.println("handling insert  ...");
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					/*if(ModelConverter.adjustedModel.getInstance() != null)
-							updateModelInstance();*/
-				}
-			});
-		}
-
-		@Override
-		public void removeUpdate(DocumentEvent e) {
-			System.out.println("handling remove  ...");
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					/*if(ModelConverter.adjustedModel.instance != null)
-							updateModelInstance();*/
-				}
-			});
-
-
-		}
-
-		@Override
-		public void changedUpdate(DocumentEvent e) {
-			System.out.println("handling change  ...");
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					/*if(ModelConverter.adjustedModel.instance != null)
-						updateModelInstance();*/
-				}
-			});
-		}
-	}
 
 }
 

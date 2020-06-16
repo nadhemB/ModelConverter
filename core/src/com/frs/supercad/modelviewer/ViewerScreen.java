@@ -11,11 +11,10 @@ import static com.badlogic.gdx.graphics.GL20.*;
 
 public class ViewerScreen implements Screen {
 
-	private ViewerController controller;
+	ViewerController controller = ViewerController.controller;
 
 	@Override
 	public void show() {
-		controller = new ViewerController();
 
 	}
 
@@ -29,8 +28,8 @@ public class ViewerScreen implements Screen {
 
 		controller.batch.begin(controller.camera);
 		controller.batch.render(controller.grid);
-		if(controller.getInstance() != null)
-			controller.batch.render(controller.getInstance());
+		if(ModelConverter.instance.getModelInstance() != null)
+			controller.batch.render(ModelConverter.instance.getModelInstance());
 		controller.batch.end();
 	}
 
