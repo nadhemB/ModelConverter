@@ -12,6 +12,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
+import com.bulenkov.darcula.DarculaLaf;
 import com.frs.supercad.ModelConverter;
 import com.frs.supercad.assets.ModelAsset;
 import com.frs.supercad.modelviewer.ModelInfo;
@@ -38,8 +39,23 @@ public class MainFrame extends JFrame {
 	public MainFrame(LwjglApplicationConfiguration config) {
 		canvas = new LwjglCanvas(ModelConverter.instance, config);
 
+		UIManager.LookAndFeelInfo[] infos = UIManager.getInstalledLookAndFeels();
+		for(UIManager.LookAndFeelInfo info:infos){
+			System.out.println(info.getClassName());
+		}
 
-		
+		try {
+			UIManager.setLookAndFeel(DarculaLaf.class.getName());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+
 		initComponents();
 		addCanvas();
 		pack();

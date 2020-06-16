@@ -19,35 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b88f85cc-8140-4c85-9b77-194d6a7a4ee6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_thoughtworks_xstream_xstream_1_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/ModelConverter.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_thoughtworks_xstream_xstream_1_4_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__xmlpull_xmlpull_1_1_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__xmlpull_xmlpull_1_1_3_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__xpp3_xpp3_min_1_1_4c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__xpp3_xpp3_min_1_1_4c.xml" afterDir="false" />
+    <list default="true" id="b88f85cc-8140-4c85-9b77-194d6a7a4ee6" name="Default" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_bulenkov_darcula_2018_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_16_0_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/core/core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/core/core.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/core/core_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/core/core_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/core/core_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/core/core_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/desktop/desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/desktop/desktop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/desktop/desktop_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/desktop/desktop_main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/desktop/desktop_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/desktop/desktop_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/ModelConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/ModelConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/assets/ModelAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/assets/ModelAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/AdjustedModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/AdjustedModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelAdjustment.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ModelInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/frs/supercad/modelviewer/ViewerScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/src/com/frs/supercad/desktop/MainFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model-converter.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +53,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="ProjectId" id="1dMRJTXPI6WFNBNARREIHVJi7o4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -298,7 +279,8 @@
       <workItem from="1592212959851" duration="27000" />
       <workItem from="1592232908736" duration="2909000" />
       <workItem from="1592236042780" duration="5267000" />
-      <workItem from="1592241503569" duration="17000" />
+      <workItem from="1592241503569" duration="194000" />
+      <workItem from="1592297898238" duration="567000" />
     </task>
     <task id="LOCAL-00001" summary="adjusting model translation and scale">
       <created>1591719371478</created>
@@ -328,13 +310,29 @@
       <option name="project" value="LOCAL" />
       <updated>1591893972068</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactoring">
+      <created>1592241608626</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592241608626</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
@@ -342,7 +340,8 @@
     <MESSAGE value="adjusting model rotation" />
     <MESSAGE value="exporting models with config file" />
     <MESSAGE value="including name and uuid to the exported model" />
-    <option name="LAST_COMMIT_MESSAGE" value="including name and uuid to the exported model" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="114" key="#com.intellij.ide.util.MemberChooser" timestamp="1592239729786">
@@ -353,22 +352,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="667" height="533" key="DebuggerActiveHint/0.0.1600.860@0.0.1600.860" timestamp="1592240453594" />
-    <state width="1557" height="124" key="GridCell.Tab.0.bottom" timestamp="1592241279064">
+    <state width="1557" height="124" key="GridCell.Tab.0.bottom" timestamp="1592298438724">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="124" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592241279064" />
-    <state width="1557" height="124" key="GridCell.Tab.0.center" timestamp="1592241279064">
+    <state width="1557" height="124" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592298438724" />
+    <state width="1557" height="124" key="GridCell.Tab.0.center" timestamp="1592298438724">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="124" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1592241279064" />
-    <state width="1557" height="124" key="GridCell.Tab.0.left" timestamp="1592241279064">
+    <state width="1557" height="124" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1592298438724" />
+    <state width="1557" height="124" key="GridCell.Tab.0.left" timestamp="1592298438724">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="124" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1592241279064" />
-    <state width="1557" height="124" key="GridCell.Tab.0.right" timestamp="1592241279064">
+    <state width="1557" height="124" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1592298438724" />
+    <state width="1557" height="124" key="GridCell.Tab.0.right" timestamp="1592298438724">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="124" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1592241279064" />
+    <state width="1557" height="124" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1592298438724" />
     <state width="1557" height="51" key="GridCell.Tab.1.bottom" timestamp="1592240846202">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -389,6 +388,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1592241313369" />
+    <state x="392" y="163" key="Vcs.Push.Dialog.v2" timestamp="1592241627936">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="392" y="163" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592241627936" />
     <state x="609" y="344" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592237344162">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
