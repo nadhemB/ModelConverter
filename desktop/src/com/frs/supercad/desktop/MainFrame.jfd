@@ -11,11 +11,307 @@ new FormModel {
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
-				"autoSize": false
-			} ) {
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "pControl"
-				"preferredSize": new java.awt.Dimension( 250, 720 )
+				"preferredSize": new java.awt.Dimension( 310, 720 )
+				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+					name: "tabbedPane1"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "panel1"
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+							"$columnSpecs": "0:1.0, 0:1.0"
+							"$rowSpecs": "0:1.0, 0:1.0, 0"
+							"$alignTop": true
+							"$alignLeft": true
+						} ) {
+							name: "panel5"
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label1"
+								"text": "Name:"
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+							add( new FormComponent( "javax.swing.JTextField" ) {
+								name: "textField1"
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridx": 1
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label2"
+								"text": "UUID"
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridy": 1
+							} )
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+								"$columnSpecs": "0:1.0, 0:1.0"
+								"$rowSpecs": "0:1.0"
+								"$alignTop": true
+								"$alignLeft": true
+							} ) {
+								name: "panel6"
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField2"
+									"preferredSize": new java.awt.Dimension( 80, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+								add( new FormComponent( "javax.swing.JButton" ) {
+									name: "button1"
+									"text": "generate"
+									"preferredSize": new java.awt.Dimension( 25, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 1
+								} )
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridx": 1
+								"gridy": 1
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label7"
+								"text": "Dimension"
+								"preferredSize": new java.awt.Dimension( 57, 25 )
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridy": 2
+							} )
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+								"$columnSpecs": "0, center:0, 0:1.0, 0, 0:1.0, center:0, center:0"
+								"$rowSpecs": "0"
+								"$hGap": 2
+								"$vGap": 2
+								"$alignLeft": true
+								"$alignTop": true
+							} ) {
+								name: "panel7"
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label8"
+									"text": "W:"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"hAlign": 0
+									"vAlign": 0
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField5"
+									"preferredSize": new java.awt.Dimension( 50, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 1
+								} )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label9"
+									"text": "H"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 2
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField6"
+									"preferredSize": new java.awt.Dimension( 50, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 3
+								} )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label10"
+									"text": "D"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 4
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField7"
+									"preferredSize": new java.awt.Dimension( 50, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 5
+								} )
+								add( new FormComponent( "javax.swing.JButton" ) {
+									name: "button3"
+									"icon": new com.jformdesigner.model.SwingIcon( 2, "FileView.floppyDriveIcon" )
+									"preferredSize": new java.awt.Dimension( 24, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 6
+									"vAlign": 0
+									"hAlign": 0
+								} )
+							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+								"gridx": 1
+								"gridy": 2
+							} )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "North"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) {
+							"hgap": 5
+							"vgap": 5
+						} ) {
+							name: "panel8"
+							"preferredSize": new java.awt.Dimension( 452, 250 )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label3"
+								"text": "Properties"
+								"preferredSize": new java.awt.Dimension( 53, 25 )
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "North"
+							} )
+							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+								name: "scrollPane1"
+								"preferredSize": new java.awt.Dimension( 452, 200 )
+								add( new FormComponent( "javax.swing.JTable" ) {
+									name: "table1"
+									"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+										add( new java.util.Vector {
+											add( null )
+											add( null )
+										} )
+									}, new java.util.Vector {
+										add( "Name" )
+										add( "Value" )
+									}, new java.util.Vector {
+										add( class java.lang.String )
+										add( null )
+									}, new java.util.Vector {
+										add( null )
+										add( null )
+									}, new java.util.Vector {
+										add( null )
+										add( null )
+									} )
+									"rowHeight": 25
+								} )
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "Center"
+							} )
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+								"$columnSpecs": "0, 0, 0"
+								"$rowSpecs": "0, 0"
+								"$hGap": 10
+								"$vGap": 10
+								"$alignLeft": true
+								"$alignTop": true
+							} ) {
+								name: "panel9"
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label4"
+									"text": "Name"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label5"
+									"text": "Value"
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 1
+									"gridwidth": 2
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField3"
+									"minimumSize": new java.awt.Dimension( 75, 30 )
+									"preferredSize": new java.awt.Dimension( 75, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridy": 1
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "textField4"
+									"preferredSize": new java.awt.Dimension( 75, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 1
+									"gridy": 1
+								} )
+								add( new FormComponent( "javax.swing.JButton" ) {
+									name: "button2"
+									"text": "Add"
+									"preferredSize": new java.awt.Dimension( 60, 30 )
+								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+									"gridx": 2
+									"gridy": 1
+								} )
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "South"
+							} )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) {
+							"vgap": 10
+						} ) {
+							name: "panel10"
+							"preferredSize": new java.awt.Dimension( 200, 200 )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label6"
+								"text": "Transform"
+								"preferredSize": new java.awt.Dimension( 54, 25 )
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "North"
+							} )
+							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+								name: "scrollPane2"
+								add( new FormComponent( "javax.swing.JTable" ) {
+									name: "table2"
+									"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+										add( new java.util.Vector {
+											add( null )
+											add( null )
+											add( null )
+											add( null )
+										} )
+										add( new java.util.Vector {
+											add( null )
+											add( null )
+											add( null )
+											add( null )
+										} )
+										add( new java.util.Vector {
+											add( null )
+											add( null )
+											add( null )
+											add( null )
+										} )
+										add( new java.util.Vector {
+											add( null )
+											add( null )
+											add( null )
+											add( null )
+										} )
+									}, new java.util.Vector {
+										add( "X" )
+										add( "Y" )
+										add( "Z" )
+										add( "W" )
+									}, new java.util.Vector {
+										add( class java.lang.Float )
+										add( class java.lang.Float )
+										add( class java.lang.Float )
+										add( class java.lang.Float )
+									}, new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									}, new java.util.Vector {
+										add( new com.jformdesigner.model.SwingTableColumn( null, 50, 0, 0, true ) )
+										add( new com.jformdesigner.model.SwingTableColumn( null, 50, 0, 0, true ) )
+										add( new com.jformdesigner.model.SwingTableColumn( null, 50, 0, 0, true ) )
+										add( new com.jformdesigner.model.SwingTableColumn( null, 50, 0, 0, true ) )
+									} )
+									"preferredScrollableViewportSize": new java.awt.Dimension( 450, 200 )
+									"rowHeight": 30
+								} )
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "Center"
+							} )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "South"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "General"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "panel2"
+					}, new FormLayoutConstraints( null ) {
+						"title": "Meshs"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "panel3"
+					}, new FormLayoutConstraints( null ) {
+						"title": "Shading"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "panel4"
+					}, new FormLayoutConstraints( null ) {
+						"title": "Grid and views"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "East"
 			} )
@@ -49,7 +345,7 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 25 )
-			"size": new java.awt.Dimension( 720, 410 )
+			"size": new java.awt.Dimension( 720, 465 )
 		} )
 	}
 }

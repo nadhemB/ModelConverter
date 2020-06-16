@@ -56,7 +56,7 @@ public class ViewerController {
 	}
 
 	public void createBackground(){
-		Material material  = new Material(ColorAttribute.createDiffuse(Color.DARK_GRAY));
+		Material material  = new Material(ColorAttribute.createDiffuse(Color.LIGHT_GRAY));
 		long attrs = VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal;
 		Model gridModel = modelBuilder.createLineGrid(100,100,10,10,material,attrs);
 		grid = new ModelInstance(gridModel);
