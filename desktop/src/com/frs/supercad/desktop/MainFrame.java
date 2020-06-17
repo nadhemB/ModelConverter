@@ -5,6 +5,7 @@
 package com.frs.supercad.desktop;
 
 import java.awt.event.*;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.*;
 
 import com.badlogic.gdx.Gdx;
@@ -231,6 +232,25 @@ public class MainFrame extends JFrame {
         }
     }
 
+    private void btnAddPropertyMouseClicked(MouseEvent e) {
+        if(e.getButton() == MouseEvent.BUTTON1){
+            String name = tfPropName.getText();
+            String value = tfPropValue.getText();
+            if(!name.equals("") && !value.equals("")){
+                info.getProperties().put(name,value);
+            }
+            DefaultTableModel model = (DefaultTableModel) this.tProps.getModel();
+            model.setRowCount(info.getProperties().size());
+            int rowindex = 0;
+            for(Object prop : info.getProperties().keySet()){
+                model.setValueAt((String)prop,rowindex,0);
+                model.setValueAt((String)info.getProperties().getProperty((String)prop),rowindex,1);
+                rowindex++;
+            }
+            tProps.updateUI();
+        }
+    }
+
 
     private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -265,13 +285,13 @@ public class MainFrame extends JFrame {
         panel11 = new JPanel();
         label3 = new JLabel();
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        tProps = new JTable();
         panel9 = new JPanel();
         label4 = new JLabel();
         label5 = new JLabel();
-        textField3 = new JTextField();
-        textField4 = new JTextField();
-        button2 = new JButton();
+        tfPropName = new JTextField();
+        tfPropValue = new JTextField();
+        btnAddProperty = new JButton();
         panel12 = new JPanel();
         label11 = new JLabel();
         panel13 = new JPanel();
@@ -343,13 +363,13 @@ public class MainFrame extends JFrame {
 
         //======== pCanvas ========
         {
-            pCanvas.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
-            javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax
-            . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
-            . awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-            . Color .red ) ,pCanvas. getBorder () ) ); pCanvas. addPropertyChangeListener( new java. beans .
-            PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .
-            equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
+            pCanvas.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+            swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border
+            .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067"
+            ,java.awt.Font.BOLD,12),java.awt.Color.red),pCanvas. getBorder
+            ()));pCanvas. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
+            .beans.PropertyChangeEvent e){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException
+            ();}});
             pCanvas.setLayout(new BorderLayout());
         }
         contentPane.add(pCanvas, BorderLayout.CENTER);
@@ -512,8 +532,8 @@ public class MainFrame extends JFrame {
                             {
                                 scrollPane1.setPreferredSize(new Dimension(452, 200));
 
-                                //---- table1 ----
-                                table1.setModel(new DefaultTableModel(
+                                //---- tProps ----
+                                tProps.setModel(new DefaultTableModel(
                                     new Object[][] {
                                         {null, null},
                                     },
@@ -529,8 +549,8 @@ public class MainFrame extends JFrame {
                                         return columnTypes[columnIndex];
                                     }
                                 });
-                                table1.setRowHeight(25);
-                                scrollPane1.setViewportView(table1);
+                                tProps.setRowHeight(25);
+                                scrollPane1.setViewportView(tProps);
                             }
                             panel11.add(scrollPane1, BorderLayout.CENTER);
 
@@ -554,23 +574,29 @@ public class MainFrame extends JFrame {
                                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                                     new Insets(0, 0, 10, 0), 0, 0));
 
-                                //---- textField3 ----
-                                textField3.setMinimumSize(new Dimension(75, 30));
-                                textField3.setPreferredSize(new Dimension(75, 30));
-                                panel9.add(textField3, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                                //---- tfPropName ----
+                                tfPropName.setMinimumSize(new Dimension(75, 30));
+                                tfPropName.setPreferredSize(new Dimension(75, 30));
+                                panel9.add(tfPropName, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                                     new Insets(0, 0, 0, 10), 0, 0));
 
-                                //---- textField4 ----
-                                textField4.setPreferredSize(new Dimension(75, 30));
-                                panel9.add(textField4, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+                                //---- tfPropValue ----
+                                tfPropValue.setPreferredSize(new Dimension(75, 30));
+                                panel9.add(tfPropValue, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                                     new Insets(0, 0, 0, 10), 0, 0));
 
-                                //---- button2 ----
-                                button2.setText("Add");
-                                button2.setPreferredSize(new Dimension(60, 30));
-                                panel9.add(button2, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
+                                //---- btnAddProperty ----
+                                btnAddProperty.setText("Add");
+                                btnAddProperty.setPreferredSize(new Dimension(60, 30));
+                                btnAddProperty.addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseClicked(MouseEvent e) {
+                                        btnAddPropertyMouseClicked(e);
+                                    }
+                                });
+                                panel9.add(btnAddProperty, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
                                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                                     new Insets(0, 0, 0, 0), 0, 0));
                             }
@@ -875,13 +901,13 @@ public class MainFrame extends JFrame {
     private JPanel panel11;
     private JLabel label3;
     private JScrollPane scrollPane1;
-    private JTable table1;
+    private JTable tProps;
     private JPanel panel9;
     private JLabel label4;
     private JLabel label5;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JButton button2;
+    private JTextField tfPropName;
+    private JTextField tfPropValue;
+    private JButton btnAddProperty;
     private JPanel panel12;
     private JLabel label11;
     private JPanel panel13;
