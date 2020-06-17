@@ -13,7 +13,7 @@ new FormModel {
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "pControl"
-				"preferredSize": new java.awt.Dimension( 310, 720 )
+				"preferredSize": new java.awt.Dimension( 320, 720 )
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
@@ -28,6 +28,7 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label1"
 								"text": "Name:"
+								"preferredSize": new java.awt.Dimension( 20, 16 )
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 							add( new FormComponent( "javax.swing.JTextField" ) {
 								name: "textField1"
@@ -37,6 +38,7 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label2"
 								"text": "UUID"
+								"preferredSize": new java.awt.Dimension( 20, 16 )
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 1
 							} )
@@ -48,14 +50,15 @@ new FormModel {
 							} ) {
 								name: "panel6"
 								add( new FormComponent( "javax.swing.JTextField" ) {
-									name: "textField2"
-									"preferredSize": new java.awt.Dimension( 80, 30 )
+									name: "tfUUID"
+									"preferredSize": new java.awt.Dimension( 100, 30 )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
 								add( new FormComponent( "javax.swing.JButton" ) {
 									name: "btnGenerateUUID"
 									"text": "generate"
 									"preferredSize": new java.awt.Dimension( 25, 30 )
 									addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnGenerateUUIDActionPerformed", true ) )
+									addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnGenerateUUIDMouseClicked", true ) )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 									"gridx": 1
 								} )
@@ -66,7 +69,7 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label7"
 								"text": "Dimension"
-								"preferredSize": new java.awt.Dimension( 57, 25 )
+								"preferredSize": new java.awt.Dimension( 20, 25 )
 							}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 								"gridy": 2
 							} )
@@ -87,7 +90,7 @@ new FormModel {
 									"vAlign": 0
 								} )
 								add( new FormComponent( "javax.swing.JTextField" ) {
-									name: "textField5"
+									name: "tfWidth"
 									"preferredSize": new java.awt.Dimension( 50, 30 )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 									"gridx": 1
@@ -99,7 +102,7 @@ new FormModel {
 									"gridx": 2
 								} )
 								add( new FormComponent( "javax.swing.JTextField" ) {
-									name: "textField6"
+									name: "tfHeight"
 									"preferredSize": new java.awt.Dimension( 50, 30 )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 									"gridx": 3
@@ -111,15 +114,16 @@ new FormModel {
 									"gridx": 4
 								} )
 								add( new FormComponent( "javax.swing.JTextField" ) {
-									name: "textField7"
+									name: "tfDepth"
 									"preferredSize": new java.awt.Dimension( 50, 30 )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 									"gridx": 5
 								} )
 								add( new FormComponent( "javax.swing.JButton" ) {
-									name: "button3"
+									name: "btnScale"
 									"icon": new com.jformdesigner.model.SwingIcon( 2, "FileView.floppyDriveIcon" )
 									"preferredSize": new java.awt.Dimension( 24, 30 )
+									addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnScaleMouseClicked", true ) )
 								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 									"gridx": 6
 									"vAlign": 0
@@ -138,82 +142,243 @@ new FormModel {
 						} ) {
 							name: "panel8"
 							"preferredSize": new java.awt.Dimension( 452, 250 )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label3"
-								"text": "Properties"
-								"preferredSize": new java.awt.Dimension( 53, 25 )
-							}, new FormLayoutConstraints( class java.lang.String ) {
-								"value": "North"
-							} )
-							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-								name: "scrollPane1"
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+								name: "panel11"
 								"preferredSize": new java.awt.Dimension( 452, 200 )
-								add( new FormComponent( "javax.swing.JTable" ) {
-									name: "table1"
-									"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
-										add( new java.util.Vector {
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label3"
+									"text": "Properties"
+									"preferredSize": new java.awt.Dimension( 53, 25 )
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "North"
+								} )
+								add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+									name: "scrollPane1"
+									"preferredSize": new java.awt.Dimension( 452, 200 )
+									add( new FormComponent( "javax.swing.JTable" ) {
+										name: "table1"
+										"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+											add( new java.util.Vector {
+												add( null )
+												add( null )
+											} )
+										}, new java.util.Vector {
+											add( "Name" )
+											add( "Value" )
+										}, new java.util.Vector {
+											add( class java.lang.String )
+											add( null )
+										}, new java.util.Vector {
+											add( null )
+											add( null )
+										}, new java.util.Vector {
 											add( null )
 											add( null )
 										} )
-									}, new java.util.Vector {
-										add( "Name" )
-										add( "Value" )
-									}, new java.util.Vector {
-										add( class java.lang.String )
-										add( null )
-									}, new java.util.Vector {
-										add( null )
-										add( null )
-									}, new java.util.Vector {
-										add( null )
-										add( null )
+										"rowHeight": 25
 									} )
-									"rowHeight": 25
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "Center"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+									"$columnSpecs": "0, 0, 0"
+									"$rowSpecs": "0, 0"
+									"$hGap": 10
+									"$vGap": 10
+									"$alignLeft": true
+									"$alignTop": true
+								} ) {
+									name: "panel9"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label4"
+										"text": "Name"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label5"
+										"text": "Value"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 1
+										"gridwidth": 2
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "textField3"
+										"minimumSize": new java.awt.Dimension( 75, 30 )
+										"preferredSize": new java.awt.Dimension( 75, 30 )
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridy": 1
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "textField4"
+										"preferredSize": new java.awt.Dimension( 75, 30 )
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 1
+										"gridy": 1
+									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "button2"
+										"text": "Add"
+										"preferredSize": new java.awt.Dimension( 60, 30 )
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 2
+										"gridy": 1
+									} )
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "South"
+								} )
+							}, new FormLayoutConstraints( class java.lang.String ) {
+								"value": "North"
+							} )
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+								name: "panel12"
+								"preferredSize": new java.awt.Dimension( 426, 100 )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label11"
+									"text": "rotation:"
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "North"
+								} )
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+									"$columnSpecs": "0, 0:1.0"
+									"$rowSpecs": "0, 0, 0"
+									"$hGap": 5
+									"$vGap": 5
+									"$alignLeft": true
+									"$alignTop": true
+								} ) {
+									name: "panel13"
+									"preferredSize": new java.awt.Dimension( 426, 80 )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label12"
+										"text": "axis"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+									add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+										"columns": 6
+										"rows": 0
+										"hgap": 5
+										"vgap": 5
+									} ) {
+										name: "panel14"
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label14"
+											"text": "X:"
+											"preferredSize": new java.awt.Dimension( 10, 25 )
+											"horizontalAlignment": 0
+										} )
+										add( new FormComponent( "javax.swing.JTextField" ) {
+											name: "textField2"
+											"preferredSize": new java.awt.Dimension( 60, 30 )
+										} )
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label15"
+											"text": "Y:"
+											"preferredSize": new java.awt.Dimension( 10, 25 )
+											"horizontalAlignment": 0
+										} )
+										add( new FormComponent( "javax.swing.JTextField" ) {
+											name: "textField5"
+											"preferredSize": new java.awt.Dimension( 60, 30 )
+										} )
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label16"
+											"text": "Z"
+											"preferredSize": new java.awt.Dimension( 10, 25 )
+											"horizontalAlignment": 0
+										} )
+										add( new FormComponent( "javax.swing.JTextField" ) {
+											name: "textField6"
+											"preferredSize": new java.awt.Dimension( 60, 30 )
+										} )
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 1
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label13"
+										"text": "degree"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridy": 1
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "textField7"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 1
+										"gridy": 1
+									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "btnRotate"
+										"text": "rotate"
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnRotateMouseClicked", true ) )
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 1
+										"gridy": 2
+									} )
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "Center"
 								} )
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "Center"
 							} )
-							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-								"$columnSpecs": "0, 0, 0"
-								"$rowSpecs": "0, 0"
-								"$hGap": 10
-								"$vGap": 10
-								"$alignLeft": true
-								"$alignTop": true
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) {
+								"hgap": 5
+								"vgap": 5
 							} ) {
-								name: "panel9"
+								name: "panel15"
 								add( new FormComponent( "javax.swing.JLabel" ) {
-									name: "label4"
-									"text": "Name"
-								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
-								add( new FormComponent( "javax.swing.JLabel" ) {
-									name: "label5"
-									"text": "Value"
-								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-									"gridx": 1
-									"gridwidth": 2
+									name: "label17"
+									"text": "Translation"
+									"preferredSize": new java.awt.Dimension( 58, 30 )
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "North"
 								} )
-								add( new FormComponent( "javax.swing.JTextField" ) {
-									name: "textField3"
-									"minimumSize": new java.awt.Dimension( 75, 30 )
-									"preferredSize": new java.awt.Dimension( 75, 30 )
-								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-									"gridy": 1
-								} )
-								add( new FormComponent( "javax.swing.JTextField" ) {
-									name: "textField4"
-									"preferredSize": new java.awt.Dimension( 75, 30 )
-								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-									"gridx": 1
-									"gridy": 1
-								} )
-								add( new FormComponent( "javax.swing.JButton" ) {
-									name: "button2"
-									"text": "Add"
-									"preferredSize": new java.awt.Dimension( 60, 30 )
-								}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-									"gridx": 2
-									"gridy": 1
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+									"$columnSpecs": "0, 0, 0, 0, 0, 0, 0, 0"
+									"$rowSpecs": "0, 0"
+									"$hGap": 5
+									"$vGap": 5
+									"$alignLeft": true
+									"$alignTop": true
+								} ) {
+									name: "panel16"
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label18"
+										"text": "X:"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "textField8"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 1
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label19"
+										"text": "Y:"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 2
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "textField9"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 3
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label20"
+										"text": "Z:"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 4
+									} )
+									add( new FormComponent( "javax.swing.JTextField" ) {
+										name: "textField10"
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 5
+									} )
+									add( new FormComponent( "javax.swing.JButton" ) {
+										name: "btnTranslate"
+										"text": "Translate"
+										addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnTranslateMouseClicked", true ) )
+									}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+										"gridx": 3
+										"gridy": 1
+									} )
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "Center"
 								} )
 							}, new FormLayoutConstraints( class java.lang.String ) {
 								"value": "South"
@@ -346,15 +511,26 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 25 )
-			"size": new java.awt.Dimension( 720, 465 )
+			"size": new java.awt.Dimension( 720, 805 )
 		} )
 		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
 			"name": "bindingGroup"
 			addBinding( new FormBinding( "this", "info.name", "textField1", "text" ) )
-			addBinding( new FormBinding( "this", "info.width", "textField5", "text_ON_ACTION_OR_FOCUS_LOST" ) )
-			addBinding( new FormBinding( "this", "info.height", "textField6", "text_ON_ACTION_OR_FOCUS_LOST" ) )
-			addBinding( new FormBinding( "this", "info.depth", "textField7", "text_ON_ACTION_OR_FOCUS_LOST" ) )
-			addBinding( new FormBinding( "this", "info.uuid", "textField2", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "info.width", "tfWidth", "text_ON_ACTION_OR_FOCUS_LOST" ) {
+				"name": "widthBinding"
+			} )
+			addBinding( new FormBinding( "this", "info.height", "tfHeight", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "info.depth", "tfDepth", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "info.uuid", "tfUUID", "text_ON_ACTION_OR_FOCUS_LOST" ) {
+				"updateStrategy": enum org.jdesktop.beansbinding.AutoBinding$UpdateStrategy READ
+			} )
+			addBinding( new FormBinding( "this", "rotationVectorX", "textField2", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "rotationVectorY", "textField5", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "rotationVectorZ", "textField6", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "rotationDegree", "textField7", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "translationX", "textField8", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "translationY", "textField9", "text_ON_ACTION_OR_FOCUS_LOST" ) )
+			addBinding( new FormBinding( "this", "translationZ", "textField10", "text_ON_ACTION_OR_FOCUS_LOST" ) )
 		} )
 	}
 }

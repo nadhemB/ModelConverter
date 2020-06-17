@@ -84,4 +84,23 @@ public class ViewerController {
 		box.getDimensions(dim);
 		return dim;
 	}
+
+    public void scale(Vector3 scale) {
+		ModelInstance instance = ModelConverter.instance.getModelInstance();
+		BoundingBox box = new BoundingBox();
+		instance.calculateBoundingBox(box);
+		Vector3 dimension = new Vector3();
+		box.getDimensions(dimension);
+		instance.transform.scale(scale.x/dimension.x,scale.y/dimension.y,scale.z/dimension.z);
+    }
+
+	public void rotate(Vector3 axis, float rotationDegree) {
+		ModelInstance instance = ModelConverter.instance.getModelInstance();
+		instance.transform.rotate(axis,rotationDegree);
+	}
+
+	public void translate(float translationX, float translationY, float translationZ) {
+		ModelInstance instance = ModelConverter.instance.getModelInstance();
+		instance.transform.translate(translationX,translationY,translationZ);
+	}
 }
