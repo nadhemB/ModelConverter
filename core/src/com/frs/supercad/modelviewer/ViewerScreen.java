@@ -23,13 +23,19 @@ public class ViewerScreen implements Screen {
 
 		Gdx.gl20.glClearColor(0.4f,0.4f,0.4f,1);
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV : 0));
-
+		if(controller.requireUpdate){
+			controller.analyseInstance();
+		}
 		controller.cameraController.update();
 
 		controller.batch.begin(controller.camera);
 		controller.batch.render(controller.grid);
-		if(ModelConverter.instance.getModelInstance() != null)
+		for(ModelInstance axis : controller.objects){
+			controller.batch.render(axis);
+		}
+		if(ModelConverter.instance.getModelInstance() != null){
 			controller.batch.render(ModelConverter.instance.getModelInstance());
+		}
 		controller.batch.end();
 	}
 

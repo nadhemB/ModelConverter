@@ -25,6 +25,9 @@ public class ModelInfo implements Serializable {
 	private float width,height,depth;
 	private Matrix4 transform = new Matrix4();
 	private Properties properties = new Properties();
+	private Vector3 scale;
+	private Vector3 translation;
+	private Quaternion rotation;
 
 	@XStreamOmitField
 	PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
@@ -111,4 +114,27 @@ public class ModelInfo implements Serializable {
 		this.transform = transform;
 	}
 
+	public Vector3 getScale() {
+		return scale;
+	}
+
+	public void setScale(Vector3 scale) {
+		this.scale = scale;
+	}
+
+	public Vector3 getTranslation() {
+		return translation;
+	}
+
+	public void setTranslation(Vector3 translation) {
+		this.translation = translation;
+	}
+
+	public Quaternion getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(Quaternion rotation) {
+		this.rotation = rotation;
+	}
 }

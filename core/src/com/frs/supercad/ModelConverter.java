@@ -5,6 +5,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.frs.supercad.modelviewer.ModelInfo;
 import com.frs.supercad.modelviewer.ViewerScreen;
 import com.frs.supercad.utilities.IOUtilities;
@@ -65,6 +68,16 @@ public class ModelConverter extends Game {
 	public void export(String path, ModelInfo info){
 
 		info.setTransform(modelInstance.transform);
+		Vector3 scale = new Vector3();
+		Quaternion rotation = new Quaternion();
+		Vector3 translation = new Vector3();
+		modelInstance.transform.getTranslation(translation);
+		modelInstance.transform.getRotation(rotation);
+		modelInstance.transform.getScale(scale);
+		info.setScale(scale);
+		info.setTranslation(translation);
+		info.setRotation(rotation);
+
 		FileOutputStream fos = null;
 		File modelFile = new File(path + File.separator + "model.g3dj");
 		File configFile = new File(path + File.separator + "info.xml");

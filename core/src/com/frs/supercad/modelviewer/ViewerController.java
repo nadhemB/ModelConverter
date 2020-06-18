@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
+import com.badlogic.gdx.utils.Array;
 import com.frs.supercad.ModelConverter;
 import com.sun.j3d.utils.applet.MainFrame;
 
@@ -24,8 +26,10 @@ public class ViewerController {
 	ModelBatch batch;
 	ModelBuilder modelBuilder;
 	ModelInstance grid;
+	Array<ModelInstance> objects = new Array<ModelInstance>();
 	public static ViewerController controller = new ViewerController();
-	private static ModelInstance instance;
+	private static ModelInstance box;
+	boolean requireUpdate = true;
 
 	ModelConverter mc = ModelConverter.instance;
 
@@ -33,13 +37,6 @@ public class ViewerController {
 	private ViewerController(){
 		init();
 		createBackground();
-		mc.addPropertyChangeLstener(new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent evt) {
-				Gdx.app.debug(PropertyChangeListener.class.getName(),"catching event.."  );
-				instance = new ModelInstance(ModelConverter.instance.getModel());
-			}
-		});
 	}
 
 	void init(){
@@ -59,21 +56,46 @@ public class ViewerController {
 	public void createBackground(){
 		Material material  = new Material(ColorAttribute.createDiffuse(Color.LIGHT_GRAY));
 		long attrs = VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal;
-		Model gridModel = modelBuilder.createLineGrid(100,100,10,10,material,attrs);
+		Model gridModel = modelBuilder.createLineGrid(100,100,1,1,material,attrs);
 		grid = new ModelInstance(gridModel);
+		Model axisX = modelBuilder.createArrow(new Vector3(0,0,0),Vector3.X,
+				new Material(ColorAttribute.createDiffuse(Color.RED)),attrs);
+		Model axisY = modelBuilder.createArrow(new Vector3(0,0,0),Vector3.Y,
+				new Material(ColorAttribute.createDiffuse(Color.GREEN)),attrs);
+		Model axisZ = modelBuilder.createArrow(new Vector3(0,0,0),Vector3.Z,
+				new Material(ColorAttribute.createDiffuse(Color.BLUE)),attrs);
+		objects.add(new ModelInstance(axisX));
+		objects.add(new ModelInstance(axisY));
+		objects.add(new ModelInstance(axisZ));
 	}
 
 	public void analyseInstance(){
-		BoundingBox box = new BoundingBox();
-		instance.calculateBoundingBox(box);
+		if(requireUpdate){
+			ModelInstance instance = ModelConverter.instance.getModelInstance();
+			if(instance != null){
+				BoundingBox box = new BoundingBox();
+				instance.calculateBoundingBox(box);
+				ModelInstance boxInstance;
+				Vector3 center = new Vector3();
+				box.getCenter(center);
+				Vector3 translation = new Vector3();
+				ModelConverter.instance.getModelInstance().transform.getTranslation(translation);
+				Model sphere = modelBuilder.createSphere(0.1f,0.1f,0.1f,20,20,new Material(ColorAttribute.createDiffuse(Color.YELLOW)),VertexAttributes.Usage.Position);
+				objects.add(new ModelInstance(sphere));
+				requireUpdate = false;
+			}
+
+		}
+
 
 	}
-	public ModelInstance getInstance() {
-		return instance;
+
+	public boolean isRequireUpdate() {
+		return requireUpdate;
 	}
 
-	public static void setInstance(ModelInstance instance) {
-		ViewerController.instance = instance;
+	public void setRequireUpdate(boolean requireUpdate) {
+		this.requireUpdate = requireUpdate;
 	}
 
 	public Vector3 getModelDimension() {
@@ -91,16 +113,20 @@ public class ViewerController {
 		instance.calculateBoundingBox(box);
 		Vector3 dimension = new Vector3();
 		box.getDimensions(dimension);
-		instance.transform.scale(scale.x/dimension.x,scale.y/dimension.y,scale.z/dimension.z);
+		instance.nodes.get(0).scale.set(scale.x/dimension.x,scale.y/dimension.y,scale.z/dimension.z);
+		instance.calculateTransforms();
+		setRequireUpdate(true);
     }
 
 	public void rotate(Vector3 axis, float rotationDegree) {
 		ModelInstance instance = ModelConverter.instance.getModelInstance();
 		instance.transform.rotate(axis,rotationDegree);
+		setRequireUpdate(true);
 	}
 
 	public void translate(float translationX, float translationY, float translationZ) {
 		ModelInstance instance = ModelConverter.instance.getModelInstance();
 		instance.transform.translate(translationX,translationY,translationZ);
+		setRequireUpdate(true);
 	}
 }
